@@ -1,0 +1,91 @@
+<?php
+
+$conn = new mysqli('localhost','root','','mydb');
+
+
+// Lista de Sql que necesito para hacer los cálculos de cuantos chicos(as) hay por listar
+
+
+
+
+date_default_timezone_set("America/Bogota");
+$fecha= date("d-m-Y");
+
+    View::content();
+    Load::lib('pdf/mpdf');
+   
+
+ $css = file_get_contents('css/boot/bootstrap.css');
+   
+
+        $acudientes = mysqli_query($conn,"SELECT identidadAl,nombre,apellido,cedulaAcu,nombreAcu,celAcu,dirAcu from alumno  ");
+
+    
+
+  
+    $html = '
+	
+	<div style ="text-align: center;">
+    <h4 >---Reporte de Matricula por grados---</h4>
+    <h4>Institución Educativa Belén - Sede Principal </h4>
+    <hr>
+</div>
+	<div  style="overflow-x:auto;">
+
+    <table class="table table-striped">
+  <thead class="thead-default">
+    <tr>
+      <th>Código Alumno</th>
+      <th>Nombre Alumno</th>
+      <th>Apellido Alumno</th>
+      <th>Nombre Acudiente</th>
+       <th>Celular Acudiente</th>
+    </tr>
+  </thead>
+  <tbody>
+';
+
+
+        while($acudientesF = mysqli_fetch_array($acudientes))
+        {
+
+
+
+      $html.=' <tr>
+            
+            <td>  ' .$acudientesF["identidadAl"].  ' </td>
+
+            <td>  '.$acudientesF['nombre'].'  </td>
+             <td>  '.$acudientesF['apellido'].  ' </td>
+
+            <td>  '.$acudientesF['acudiente'].'  </td>
+             <td>  '.$acudientesF['celular_acudiente'].'  </td>
+        </tr>
+';
+   
+
+        }
+
+    
+
+$html.='
+   
+  </tbody>
+</table>
+	
+
+</div>
+</h3>
+
+<hr>
+
+';
+
+
+    $mpdf = new mPDF('c', 'A4-L');
+
+    $mpdf->WriteHTML($css, 1);
+
+    $mpdf->WriteHTML($html);
+    $mpdf->Output('reporte_lista_acudientes.pdf', 'I');
+?>

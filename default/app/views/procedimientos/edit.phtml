@@ -1,0 +1,39 @@
+<?php View::content(); ?>
+
+<?php echo Form::open(); ?>
+
+<div class="row">
+
+    <div class="col-lg-3">
+
+        <div class="form-group">
+            <label>Nombre Prodecimiento</label>
+            <input type="text" name="tituloF"  id="tituloF" class="form-control" value='<?php echo $tipoprocedimiento->tituloTipo; ?>' > 
+            <input type="hidden" name="idPro"  id="idPro" class="form-control" value='<?php echo $tipoprocedimiento->idTipo; ?>' > 
+        </div>
+        
+    </div>
+
+
+
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-2">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Actualizar">Actualizar Procedimiento
+         
+        </button>
+    </div>
+
+    <div class="col-lg-1" style="margin-left:20px;">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close(); ?>

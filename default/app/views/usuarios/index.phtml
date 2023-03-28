@@ -1,0 +1,57 @@
+<?php View::content(); ?>
+
+<div id="scaffold">
+
+    <div id="contenedor">
+
+        <header class="z-depth-1 institucion">
+            <b>BIENVENIDO A CLINIC</b>
+        </header>
+        <div class="formulario z-depth-1">
+            <div class="disminuir row">
+                <!--form class="col s12"-->
+                <?php echo Form::open("usuarios/index"); ?>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="usuario" name="usuario" type="text" class="validate">
+                        <label for="last_name">Usuario</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="clave" name="clave" type="password" class="validate">
+                        <label for="password">Contraseña</label>
+                        <!--label for="clave">Clave:</label-->
+                    </div>
+                    <div class="boton">
+                        <button class="btn waves-effect waves-light" type="submit" name="Ingresar">Ingresar
+                            <!--?php echo Form::submit("Ingresar","class: boton"); ?-->
+                        </button>
+                    </div>
+                </div>
+                <?php echo Form::close(); ?>
+                <!--/form-->
+            </div>
+        </div>
+        <!--Finaliza formulario-->
+
+        <footer>
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">info</i>Información adicional</div>
+                    <div class="collapsible-body"><p>Pitalito-Huila<br />Barrio: -----<br />Teléfono: 312 539 8788<br /></p></div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">warning</i>Advertencia</div>
+                    <div class="collapsible-body">
+                        <p>
+                            Está página y todos sus elementos sólo pueden ser usados por personal autorizado por el médico <b>Carlos Eduardo Burbano </b>.
+                            <br /><br />
+                            Cualquier uso indebido podrá acarrear sanciones disciplinarias y hasta penales.
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </footer>
+        <!--Finaliza footer-->
+
+    </div>
+</div>

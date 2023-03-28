@@ -1,0 +1,124 @@
+<?php
+View::content();
+
+
+ $css = file_get_contents('css/boot/bootstrap.css');
+$number = rand(1,32);
+
+
+  $html = '
+<html>
+<head>
+
+
+
+<style> 
+
+
+@page { sheet-size: Letter; }
+
+
+#example1 {
+       background-image: url(img/frases1/f1.png);;
+    background-position: right bottom, left top;
+    background-repeat: no-repeat, repeat;
+    width:818px;
+    height:492px;
+    
+}
+
+td {
+
+
+  padding:2px;
+}
+
+
+</style>
+
+
+</head>
+<body>
+
+<div id="example1">
+
+<div id="nombre" style="margin-left:680px; padding-top:16px;">
+<h5>'.$date.'</h5>
+</div>
+
+<div id="nombre" style="margin-left:480px; padding-top:30px;">
+<h5>'.$paciente->nombreP.'</h5>
+</div>
+
+<div id="apellido" style="margin-left:480px; padding-top:1px;">
+<h5>'.$paciente->apellidoP.'</h5>
+</div>
+
+<div id="fecha" style="margin-left:700px; padding-top:-54px;">
+<h5>'.$paciente->rhP.'</h5>
+</div>
+
+
+<div id="fecha" style="margin-left:700px; padding-top:2px;">
+<h6>'.$paciente->celP.'</h6>
+
+
+
+</div>
+
+
+<div id="medicamentos" style="margin-left:40px; padding-top:72px; padding-bottom:105px;   ">';
+
+for ($i=0; $i <count($e) ; $i++) { 
+ $html.=''.$e[$i].'<br>';
+
+}
+
+
+
+$html.='</div>
+
+
+
+</div>
+
+</body>
+</html>
+';
+
+
+
+
+
+$html2='<br> <br>';
+ 
+
+Load::lib('pdf/mpdf');
+
+   //   $mpdf = new mPDF('utf-8', array(896,477));
+
+ $mpdf = new mPDF('c','', 0, '', '0', '0', '0', '0', '0', '0', 'Letter');
+ //$mpdf = new mPDF('utf-8', 'Letter-L');
+
+
+    $html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
+    $html2 = mb_convert_encoding($html2, 'UTF-8', 'UTF-8');
+    $mpdf->WriteHTML($css, 1);
+   
+
+
+    $mpdf->WriteHTML($html);
+   
+
+  
+   $string = 'formulaMedicamentos'.$paciente->nombreP.$paciente->apellidoP.$date.'.pdf';
+  
+  
+    
+    $mpdf->Output($string, 'I');
+
+exit;
+
+ 
+// añadir vaciar tabla mysql codigo 
+    ?>

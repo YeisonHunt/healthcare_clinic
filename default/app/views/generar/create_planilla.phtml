@@ -1,0 +1,95 @@
+<?php View::content(); ?>
+
+<?php echo Form::open(); ?>
+
+<div class="row">
+
+    <div class="col-lg-2">
+
+       <div class="form-group">
+        <label>Años Lectivos</label>
+        <select class="form-control" name ="idAnioF" id="idAnioF">
+           <optgroup label="Años Lectivos Actuales">
+              <?php foreach ($anio->items as $item) : ?>
+                <option value='<?php echo $item->idAnio ?>'> <?php echo $item->idAnio?> </option>
+            <?php endforeach; ?>
+        </optgroup>
+    </select>
+  </div>  
+
+</div> <!-- END FIRST COLUMN-->
+
+<div class="col-lg-3">
+
+    <div class="form-group" style="display:none;">
+        <input type="text" name="periodoN" id="periodoN" class="form-control" placeholder="Grado" value ="2">
+    </div>
+    <label for="example">Seleccionar el periodo</label>
+
+    <div class="form-group">
+        <select class="form-control"  name ="periodoF"id="periodoF">
+         <optgroup label="Periodos">
+            <option value ="1">1</option>
+            <option value ="2">2</option>
+            <option value ="3">3</option>
+            <option value ="4">4</option>
+            
+        </optgroup>
+    </select>
+
+</div>
+
+
+</div><!-- END 2 COLUMN-->
+
+<div class="col-lg-2">
+
+    <div class="form-group" style="display:none;">
+        <input type="text" name="gradoZ" id="gradoZ" class="form-control" placeholder="Grado" value="3">
+    </div>
+    <label for="exampleSelect1">Seleccionar el grado</label>
+
+    <div class="form-group">
+        <select class="form-control"  name ="gradoF"id="gradoF">
+         <optgroup label="Grados">
+            <option value ="13">Preescolar</option>
+            <option value ="1">1</option>
+            <option value ="2">2</option>
+            <option value ="3">3</option>
+            <option value ="4">4</option>
+            <option value ="5">5</option>
+            <option value ="6">6</option>
+            <option value ="7">7</option>
+            <option value ="8">8</option>
+            <option value ="9">9</option>
+            <option value ="10">10</option>
+        </optgroup>
+    </select>
+
+</div>
+
+
+</div>
+
+
+
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-2">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">Generar Planilla
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
+        </button>
+    </div>
+    <div class="col-lg-2">
+        <div class="actions">
+            <?= Html::linkAction("atras", 'Atras', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close(); ?>

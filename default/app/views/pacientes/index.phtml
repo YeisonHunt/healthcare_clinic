@@ -1,0 +1,92 @@
+<?php View::content();  // Profesores Terminado?>
+
+<div class="row">
+    <div class="col-lg-2">
+        <div class="actions">
+            <?= Html::linkAction("crear/", 'Crear nuevo paciente', 'class="btn btn-primary"') ?>
+        </div>
+    </div>
+
+    <div class="col-lg-2" style="margin-left:20px;">
+        <div class="actions">
+            <?= Html::linkAction("buscar/", 'Buscar paciente', 'class="btn btn-info"') ?>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<!-- /.row -->
+
+        <h4>Lista Últimos 8 Pacientes registrados...</h4>
+        <h3 style="color:#2E86C1;">Número de pacientes hasta ahora: <b> <?php echo $numeroPacientes->cuenta; ?></b></h3>
+        <hr>
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>Cédula/TI</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Dirección</th>
+                                <th>Celular</th>
+                                <th>Profesión</th>
+                                <th>Edad</th>
+                                <th>Peso (Kg)</th>
+                                <th>Estatura</th>
+                               
+                                <th>RH</th>
+                                    <th>S</th>
+                                    <th>Alérgias</th>
+                                    <th>EPS</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php for($i=0; $i<count($listaPacientes); $i++) { ?>
+                                    <tr>
+                                       <td><?php echo $listaPacientes[$i]->cedulaP ?></td>
+                                        <td><b><?php echo $listaPacientes[$i]->nombreP ?><b></td>
+                                        <td><?php echo $listaPacientes[$i]->apellidoP ?></td>
+                                        <td><?php echo $listaPacientes[$i]->dirP ?></td>
+                                        <td><?php echo $listaPacientes[$i]->celP ?></td>
+
+                                        <td><b><?php echo $listaPacientes[$i]->profesion ?></b></td>
+                                        
+
+                                        <td><?php echo $listaPacientes[$i]->age ?></td>
+
+                                        <td><?php echo $listaPacientes[$i]->peso ?></td>
+                                        
+
+                                        <td><?php echo $listaPacientes[$i]->estaturaP ?></td>
+
+                                        <td><?php echo $listaPacientes[$i]->rhP ?></td>
+
+                                        <td><?php echo $listaPacientes[$i]->genero ?></td>
+
+                                        <td><?php echo $listaPacientes[$i]->alergias ?></td>
+                                        <td><?php echo $listaPacientes[$i]->eps ?></td>
+                                        <?php 
+
+                                         $idPaciente = $listaPacientes[$i]->idPaciente;
+
+                                        ?>
+
+                                        <td>
+                                        <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("edit/$idPaciente", ' Editar Paciente') ?>
+
+                                           
+                                        </td>  
+                                    </tr>
+                                 <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.row -->

@@ -1,0 +1,42 @@
+<?php View::content(); ?>
+
+<?php echo Form::open(); ?>
+
+<div class="row">
+
+    <div class="col-lg-3">
+        <div class="form-group">
+            <input type="text" name="alumno_idAlumno" id="alumno_idAlumno" class="form-control" placeholder="Identificación Alumno">
+        </div>
+        <div class="form-group">
+            <input type="text" name="nombreRector" id="nombreRectore" class="form-control" placeholder="Nombre Rector">
+        </div>
+        <div class="form-group">
+            <input type="text" name="nombreDirector"  id="nombreDirector" class="form-control" placeholder="Nombre Director">
+        </div>
+        <div class="form-group">
+            <input type="text" name="observaciones"  id="observaciones" class="form-control" placeholder="Observaciones">
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-2">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">Generar Boletín
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
+        </button>
+    </div>
+    <div class="col-lg-2">
+        <div class="actions">
+            <?= Html::linkAction("atras", 'Atras', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close(); ?>
+

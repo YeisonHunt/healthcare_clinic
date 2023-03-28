@@ -1,0 +1,135 @@
+<?php
+    View::content();
+
+    Load::lib('pdf/mpdf');
+    $css = file_get_contents('css/sbadmin/bootstrap.css');
+
+    $html = '<div class="row text-center">
+    <div class="col-lg-4">
+        <img src="../public/img/escudopdf.png" />
+    </div>
+    <div class="col-lg-4">
+        REPUBLICA DE COLOMBIA <br />
+        SECRETARÍA DE EDUCACIÓN DEPARTAMENTAL <br />
+        COLEGIO DEPARTAMENTAL INSTITUCIÓN EDUCATIVA BELÉN <br />
+        RESOLUCIÓN No. 9999 DE 2015 DECRETO 999 DE 2004 <br />
+        NIT: XXXX DANE 241359000160 <br />
+        ISNOS - HUILA
+    </div>
+    <div class="col-lg-4">
+        <img src="../public/img/sistemapdf.png" />
+    </div>
+</div>
+
+<br />
+
+<div class="row text-center">
+    <div class="col-lg-12">
+        <p>
+            El Suscrito Rector de la Institución Educativa Belén de Isnos - Huila, Modalidad Academica, calendario A y aprobada mediante Decreto N° 99 de 2005, emana de la Secretaría de Educación del Huila y Resolución de Aprobación de Estudios N° 0000 del 00 de Junio de 2000
+        </p>
+        <h4>CERTIFICA</h4>
+        <p>'. $motivoCertificado .'</p>
+    </div>
+</div>
+
+<div class="row text-center">
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th colspan="5" class="text-center">INFORME SEGUNDO PERIODO</th>
+                    </tr>
+                    <tr>
+                        <th class="text-center">No</th>
+                        <th class="text-center">AREAS Y ASIGNATURAS</th>
+                        <th class="text-center">IH</th>
+                        <th class="text-center">VALORACIÓN</th>
+                        <th class="text-center">ESCALA VALORATIVA</th>
+                    </tr>
+                </thead>
+
+                <br />
+
+                <tbody>
+                    <tr>
+                        <td>01</td>
+                        <td>Matematicas</td>
+                        <td>1</td>
+                        <td>2,79</td>
+                        <td>B-</td>
+                    </tr>
+
+                    <tr>
+                        <td>02</td>
+                        <td>Ciencias Sociales</td>
+                        <td>2</td>
+                        <td>2,80</td>
+                        <td>B-</td>
+                    </tr>
+
+                    <tr>
+                        <td>03</td>
+                        <td>Educación Artistica</td>
+                        <td>7</td>
+                        <td>2,56</td>
+                        <td>B-</td>
+                    </tr>
+
+                    <tr>
+                        <td>04</td>
+                        <td>Etica y Valores</td>
+                        <td>1</td>
+                        <td>4,80</td>
+                        <td>S</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">OBSERVACIONES</th>
+                        <th class="text-center">'. $observaciones .'</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<!-- /.row -->
+<div class="row text-center">
+    <div class="col-lg-12">
+        <p>Nota: es fiel copia tomada de su original.</p>
+    </div>
+    <div class="col-lg-12">
+        <b>'. $fechaExpedicion .'</b>
+    </div>
+</div>
+
+<br /><br />
+
+<!-- /. Firmas -->
+<div class="row text-center">
+    <div class="col-lg-6">
+        <br/>
+        <hr>
+        <b>'. $nombreRector .'<br />Rector</b>
+    </div>
+    <div class="col-lg-6 table-bordered">
+        <p> Espacio para el sello de la entidad<br/><br/><br/><br/></p>
+    </div>
+</div>
+
+<br />';
+
+    $mpdf = new mPDF('c', 'A4');
+
+    $mpdf->WriteHTML($css, 1);
+    $mpdf->WriteHTML($html);
+    $mpdf->Output('certificado.pdf', 'I');
+
+?>

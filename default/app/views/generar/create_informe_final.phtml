@@ -1,0 +1,39 @@
+<?php View::content(); ?>
+
+<?php echo Form::open() ?>
+
+<div class="row">
+
+    <div class="col-lg-3">
+        <div class="form-group">
+            <input type="text" name="profesor_idProfesor" id="profesor_idProfesor" class="form-control" placeholder="Indentificación Profesor">
+        </div>
+        <div class="form-group">
+            <input type="text" name="nombreRector" id="nombreRector" class="form-control" placeholder="Nombre Rector">
+        </div>
+        <div class="form-group">
+            <label>Observaciones</label>
+            <textarea name="observaciones" class="form-control" rows="3"></textarea>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-2">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">Generar informe final
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
+        </button>
+    </div>
+    <div class="col-lg-2">
+        <div class="actions">
+            <?= Html::linkAction("atras", 'Atras', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close() ?>

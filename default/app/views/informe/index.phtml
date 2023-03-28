@@ -1,0 +1,269 @@
+<?php View::content(); ?>
+
+<?php echo Form::open(); ?>
+
+
+<div class="row">
+
+
+   <div class="col-lg-2">
+
+      <div class="form-group">
+         <h4>Año lectivo</h4>
+         <select class="form-control" name ="idAnioF" id="idAnioF">
+             <optgroup label="Años Lectivos Actuales">
+              <?php foreach ($anio->items as $item) : ?>
+                <option value='<?php echo $item->idAnio ?>'> <?php echo $item->idAnio?> </option>
+            <?php endforeach; ?>
+        </optgroup>
+    </select>
+</div>  
+
+</div>
+
+
+<div class="col-lg-2">
+
+
+
+   <h4>Grado</h4>
+
+   <div class="form-group">
+    <select class="form-control"  name ="gradoF" id="gradoF">
+       <optgroup label="Grados Actuales">
+        <option value ="13">Preescolar</option>
+        <option value ="1">Primero</option>
+        <option value ="2">Segundo</option>
+        <option value ="3">Tercero</option>
+        <option value ="4">Cuarto</option>
+        <option value ="5">Quinto</option>
+        <option value ="6">Sexto</option>
+        <option value ="7">Séptimo</option>
+        <option value ="8">Octavo</option>
+        <option value ="9">Noveno</option>
+        <option value ="10">Décimo</option> 
+        <option value ="10">Undécimo</option> 
+    </optgroup>
+</select>
+</div>
+
+
+</div>
+
+
+
+<div class="col-lg-3">
+
+    <div class="form-group" style="display:none;">
+        <input type="text" name="periodoA" id="periodoA"  class="form-control" value="2">
+    </div>
+
+    <h4>Materia</h4>
+
+    <div class="form-group">
+        <select class="form-control"  name ="materiaF" id="materiaF">
+           <optgroup label="Materias Primaria">
+            <option value ="MATEMATICAS">Matemáticas</option>
+            <option value ="LENGUA CASTELLANA">Lengua Castellana</option>
+            <option value ="INGLES">Inglés</option>
+            <option value ="CIENCIAS SOCIALES">Ciencias Sociales</option>
+            <option value ="CIENCIAS NATURALES">Ciencias Naturales</option>
+            <option value ="EDUCACION ARTISTICA">Educación Artística</option>
+            <option value ="EDUCACION RELIGIOSA">Educación Religiosa</option>
+            <option value ="EDUCACION FISICA">Educación Física</option>
+            <option value ="ETICA Y VALORES">Ética y Valores</option>
+            <option value ="TECNOLOGIA E INFORMATICA">Tenología e Informática</option>
+
+        </optgroup>
+        <optgroup label="Materias Secundaria">
+            <option value ="PROYECTO">Proyecto P.P.P</option>
+            <option value ="MATEMATICAS">Matemáticas</option>
+            <option value ="ESPAÑOL">Español</option>
+            <option value ="QUIMICA">Química</option>
+            <option value ="INGLES">Inglés</option>
+            <option value ="EDUCACION FISICA">Educación Física</option>
+            <option value ="FILOSOFIA">Filosofía</option>
+            <option value ="ARTISTICA">Artística</option>
+            <option value ="ETICA">Ética</option>
+            <option value ="ECONOMIA">Economía</option>
+            <option value ="FISICA">Física</option>
+            <option value ="RELIGION">Religión</option>  
+            <option value ="INFORMATICA">Religión</option>  
+        </optgroup>
+
+
+    </select>
+</div>
+
+
+</div>
+
+
+<div class="col-lg-2">
+
+
+
+   <h4>periodo</h4>
+
+   <div class="form-group">
+    <select class="form-control"  name ="periodoA" id="periodoA">
+       <optgroup label="Periodos Actuales">
+
+        <option value ="1">Primero</option>
+        <option value ="2">Segundo</option>
+        <option value ="3">Tercero</option>
+        <option value ="4">Cuarto</option>
+
+    </optgroup>
+</select>
+</div>
+
+
+</div>
+
+<div class="col-lg-2" style="padding-top:40px;">
+    <button class="btn btn-primary waves-effect waves-light" type="submit" name="Ingresar">Generar Informe
+        <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
+    </button>
+</div>
+
+
+
+
+</div>
+
+<?php echo Form::close(); ?>
+<!-- Aquí termina la prima fila planillas con notas -->
+<?php echo Form::open("informe/vacia"); ?>
+<hr>
+
+
+<div class="row">
+
+
+   <div class="col-lg-2">
+
+      <div class="form-group">
+         <h4>Año lectivo</h4>
+         <select class="form-control" name ="idAnioB" id="idAnioB">
+             <optgroup label="Años Lectivos Actuales">
+              <?php foreach ($anio->items as $item) : ?>
+                <option value='<?php echo $item->idAnio ?>'> <?php echo $item->idAnio?> </option>
+            <?php endforeach; ?>
+        </optgroup>
+    </select>
+</div>  
+
+</div>
+
+
+<div class="col-lg-2">
+
+
+
+   <h4>Grado</h4>
+
+   <div class="form-group">
+    <select class="form-control"  name ="gradoB" id="gradoB">
+       <optgroup label="Grados Actuales">
+        <option value ="13">Preescolar</option>
+        <option value ="1">Primero</option>
+        <option value ="2">Segundo</option>
+        <option value ="3">Tercero</option>
+        <option value ="4">Cuarto</option>
+        <option value ="5">Quinto</option>
+        <option value ="6">Sexto</option>
+        <option value ="7">Séptimo</option>
+        <option value ="8">Octavo</option>
+        <option value ="9">Noveno</option>
+        <option value ="10">Décimo</option> 
+        <option value ="11">Undécimo</option> 
+    </optgroup>
+</select>
+</div>
+
+
+</div>
+
+
+
+<div class="col-lg-3">
+
+    <div class="form-group" style="display:none;">
+    <input type="text" name="periodoR" id="periodoR"  class="form-control" value="2">
+    </div>
+
+    <h4>Materia</h4>
+
+    <div class="form-group">
+        <select class="form-control"  name ="materiaB" id="materiaB">
+           <optgroup label="Materias Primaria">
+            <option value ="MATEMATICAS">Matemáticas</option>
+            <option value ="LENGUA CASTELLANA">Lengua Castellana</option>
+            <option value ="INGLES">Inglés</option>
+            <option value ="CIENCIAS SOCIALES">Ciencias Sociales</option>
+            <option value ="CIENCIAS NATURALES">Ciencias Naturales</option>
+            <option value ="EDUCACION ARTISTICA">Educación Artística</option>
+            <option value ="EDUCACION RELIGIOSA">Educación Religiosa</option>
+            <option value ="EDUCACION FISICA">Educación Física</option>
+            <option value ="ETICA Y VALORES">Ética y Valores</option>
+            <option value ="TECNOLOGIA E INFORMATICA">Tenología e Informática</option>
+
+        </optgroup>
+        <optgroup label="Materias Secundaria">
+            <option value ="PROYECTO">Proyecto P.P.P</option>
+            <option value ="MATEMATICAS">Matemáticas</option>
+            <option value ="ESPAÑOL">Español</option>
+            <option value ="QUIMICA">Química</option>
+            <option value ="INGLES">Inglés</option>
+            <option value ="EDUCACION FISICA">Educación Física</option>
+            <option value ="FILOSOFIA">Filosofía</option>
+            <option value ="ARTISTICA">Artística</option>
+            <option value ="ETICA">Ética</option>
+            <option value ="ECONOMIA">Economía</option>
+            <option value ="FISICA">Física</option>
+            <option value ="RELIGION">Religión</option>  
+            <option value ="INFORMATICA">Religión</option>  
+        </optgroup>
+
+
+    </select>
+</div>
+
+
+</div>
+
+<div class="col-lg-2">
+
+
+
+   <h4>Periodos</h4>
+
+   <div class="form-group">
+    <select class="form-control"  name ="periodoB" id="periodoB">
+       <optgroup label="Periodos Actuales">
+
+        <option value ="1">Primero</option>
+        <option value ="2">Segundo</option>
+        <option value ="3">Tercero</option>
+        <option value ="4">Cuarto</option>
+
+    </optgroup>
+</select>
+</div>
+
+
+</div>
+
+
+<div class="col-lg-2" style="padding-top:40px;">
+    <button class="btn btn-warning waves-effect waves-light" type="submit" name="Ingresar">Generar informe vacío 
+        <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
+    </button>
+</div>
+
+
+</div>
+
+
+<?php echo Form::close(); ?>

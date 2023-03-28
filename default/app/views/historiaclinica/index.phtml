@@ -1,0 +1,112 @@
+<?php View::content();  // Profesores Terminado?>
+
+<div class="row">
+   
+
+    
+
+
+     <div class="col-lg-4">
+        <div class="form-group input-group">
+            <span class="input-group-btn">
+                <?php echo Form::open("historiaclinica/buscar2/"); ?>
+                <h4>Buscar Historia por motivo:</h4>
+                <input type="hidden" name="valH" id ="valH" value="2">
+                <input type="text" name="nombreP" id ="nombreP" class="form-control" placeholder="Introducir palabra en motivo de consulta" required>
+                <button class="btn btn-default" type="submit" name="Buscar"><i class="fa fa-search"></i></button>
+                <?php echo Form::close(); ?>
+            </span>
+        </div>
+    </div>
+
+    <div class="col-lg-2" >
+        <div class="actions" style ="padding-top:40px; margin-left:40px;">
+            <?= Html::linkAction("buscar/", 'Buscar pacientes', 'class="btn btn-primary"') ?>
+        </div>
+    </div>
+
+
+
+</div>
+
+<hr>
+
+<!-- /.row -->
+
+        <h4>Lista Últimas Historias Clinicas....</h4>
+        <hr>
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Motivo</th>
+                                <th>Sistólica</th>
+                                <th>Diastólica</th>
+                                <th>Cardiaca</th>
+                                <th>Respiratoria</th>
+                                <th>Paciente</th>
+                           
+                              <th>Acciones</th>
+                              <th>Crear Historia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php for($i=0; $i<count($listaClinicas); $i++) { ?>
+                                    <tr>
+                                       <td><?php echo $listaClinicas[$i]->fecha ?></td>
+                                        <td><b><?php echo $listaClinicas[$i]->motivoH ?><b></td>
+                                        <td><?php echo $listaClinicas[$i]->preSistolica ?></td>
+                                        <td><?php echo $listaClinicas[$i]->preDistolica ?></td>
+                                        <td><?php echo $listaClinicas[$i]->frecCardiaca ?></td>
+
+                                        <td><?php echo $listaClinicas[$i]->frecRespiratoria ?></td>
+                                        
+
+                                        <td><?php echo $listaClinicas[$i]->nombreP; echo "&nbsp;"; echo $listaClinicas[$i]->apellidoP; ?></td>
+
+                                        
+                                        
+
+                                        <?php  $idPaciente = $listaClinicas[$i]->idPaciente; ?>
+                                        <?php  $idHistoria = $listaClinicas[$i]->idHistoriaClinica; ?>
+
+                                    
+
+                                        <td>
+                                        <i class="fa fa-fw fa-cog"></i><?php echo Html::linkAction("edit/$idHistoria/$idPaciente", ' Editar Historia') ?>
+                                        <?php echo "<br>"; ?>
+
+                                           <i class="fa fa-fw fa-h-square"></i><?php echo Html::linkAction("verTodas/$idPaciente", ' Ver Historia Completa') ?>
+ 
+                                        </td>  
+
+                                            <td>
+                                        
+
+                                           <i class="fa fa-fw fa-clipboard"></i><?php echo Html::linkAction("crearHistoria/$idPaciente", ' Crear H Para paciente actual') ?>
+ 
+                                        </td>  
+
+                                    </tr>
+                                 <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>

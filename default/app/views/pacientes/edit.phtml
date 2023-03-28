@@ -1,0 +1,246 @@
+<?php View::content(); ?>
+
+<?php echo Form::open(); ?>
+
+<h4>Información Primaria del Paciente </h4>
+<hr>
+
+<div class="row">
+
+    <div class="col-lg-3">
+        <div class="form-group">
+            <label for="idProF">Identificación (CC) ó (TI)</label>
+
+            <input type="number" name="idP" id="idP" class="form-control" placeholder="Identificación"
+             value ="<?php echo $paciente->cedulaP; ?>" required>
+            <input type="hidden" name="idProF" id="idProF" class="form-control" placeholder="Identificación" 
+              value ="<?php echo $paciente->idPaciente; ?>" >
+             <!-- valor para formulario-->
+        </div>
+    </div>
+ 
+
+    <div class="col-lg-3">
+        <div class="form-group">
+            <label for="nombreF">Nombres</label>
+            <input type="text" name="nF"  id="nF" class="form-control" placeholder="Nombres" 
+            value ="<?php echo $paciente->nombreP; ?>" required>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+
+        <div class="form-group">
+            <label for="apellidoF">Apellidos </label>
+            <input type="text" name="aF"  id="aF" class="form-control" placeholder="Apellidos" 
+                 value ="<?php echo $paciente->apellidoP; ?>"
+            required>
+        </div>
+    </div>
+
+
+    <div class="col-lg-3">
+
+        <div class="form-group">
+            <label for="celularF">Celular </label>
+            <input type="number" min ="0" name="cF" maxlength="10"  id="cF" class="form-control"
+            value ="<?php echo $paciente->celP; ?>"  placeholder="Celular" required>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="row">
+
+
+<div class="col-lg-3">
+
+    <div class="form-group">
+        <label for="apellidoF">Profesión </label>
+        <input type="text" name="prF"  id="prF" class="form-control" placeholder="Profesión"
+        value ="<?php echo $paciente->profesion; ?>" required>
+    </div>
+</div>
+
+  <div class="col-lg-4">
+
+    <div class="form-group">
+        <label for="apellidoF">Dirección </label>
+        <input type="text" name="dF"  id="dF" class="form-control" 
+        value ="<?php echo $paciente->dirP; ?>" placeholder="Dirección" required>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="col-lg-2">
+
+    <div class="form-group">
+        <label for="apellidoF">Peso (Kgs)</label>
+        <input type="number" name="pF" min ="0"  id="pF" class="form-control"
+         value ="<?php echo $paciente->peso; ?>"
+         placeholder="Peso en Kgs" required>
+    </div>
+</div>
+
+<div class="col-lg-3">
+
+    <div class="form-group">
+        <label for="apellidoF">Fecha Nacimiento  (mm/dd/aaaa)</label>
+        <input type="date" name="fN"  id="fN" class="form-control" 
+        value ="<?php echo $paciente->fechaNaciP; ?>"
+         placeholder="Fecha Nacimiento" >
+    </div>
+</div>
+
+</div>
+
+<div class="row">
+
+
+<div class="col-lg-2">
+
+    <div class="form-group">
+        <label for="apellidoF">Estatura (mts) </label>
+        <input type="text" name="eF"  id="eF" class="form-control"
+          value ="<?php echo $paciente->estaturaP; ?>"
+         placeholder="Estatura mts" required>
+    </div>
+</div>
+<?php
+
+$rh=$paciente->rhP;
+
+
+
+$array = array();
+            if ($rh == "O+") $array[0] = 'selected'; else $array[0] = '';
+            if ($rh == "O-") $array[1] = 'selected'; else $array[1] = '';
+            if ($rh == "A+") $array[2] = 'selected'; else $array[2] = '';
+            if ($rh == "A-") $array[3] = 'selected'; else $array[3] = '';
+            if ($rh == "B+") $array[4] = 'selected'; else $array[4] = '';
+            if ($rh == "B-") $array[5] = 'selected'; else $array[5] = '';
+            if ($rh == "AB+") $array[6] = 'selected'; else $array[6] = '';
+            if ($rh == "AB-") $array[7] = 'selected'; else $array[7] = '';
+
+
+
+
+ ?>
+
+<div class="col-lg-2">
+        <!-- COLUMNA 3-->
+       <div class="form-group">
+            <label>RH</label> <!-- No es necesario cuando se matricula  MOVER A  Alumnos EDITABLES-->
+            <select class="form-control" name ="rhF" id ="rhF">
+            <option <?= $array[0] ?> >O+</option>
+            <option <?= $array[1] ?> >O-</option>
+            <option <?= $array[2] ?> >A+</option>
+            <option <?= $array[3] ?> >A-</option>
+            <option <?= $array[4] ?> >B+</option>
+            <option <?= $array[5] ?> >B-</option>
+            <option <?= $array[6] ?> >AB+</option>
+            <option <?= $array[7] ?> >AB-</option>
+            </select>
+        </div>
+</div>
+
+<?php 
+
+$array1 = array();
+            if ($paciente->genero == "M") $array1[0] = 'selected'; else $array1[0] = '';
+            if ($paciente->genero == "F") $array1[1] = 'selected'; else $array1[1] = '';
+            if ($paciente->genero == "O") $array1[2] = 'selected'; else $array1[2] = '';
+
+
+?>
+
+<div class="col-lg-2">
+
+           <div class="form-group">
+         <label>Género</label>
+            <select class="form-control"  name ="gF"id="gF">
+            
+                <option value ="M" <?= $array1[0] ?> >Masculino</option>
+                <option value ="F" <?= $array1[1] ?> >Femenino</option>
+                <option value ="O" <?= $array1[2] ?> >Otro</option>
+             </select>
+            </div>
+</div>
+
+<div class="col-lg-3">
+
+    <div class="form-group">
+        <label for="apellidoF">EPS </label>
+        <input type="text" name="epsF"  id="epsF" class="form-control" placeholder="EPS" 
+         value ="<?php echo $paciente->eps; ?>"
+         >
+    </div>
+</div>
+
+
+
+
+
+<!-- SEGUNDA COLUMMNA -->
+
+
+
+
+</div>
+<!-- /.row -->
+
+<h4>Información Adicional</h4>
+<hr>
+
+
+<div class="row">
+
+<div class="col-lg-3">
+
+
+<div class="form-group">
+<label>Alérgias</label>
+<textarea class="form-control" type="textarea" rows="2" id ="aleF" name ="aleF" placeholder ="Alérgias..."><?php echo $paciente->alergias; ?></textarea>
+</div>
+
+</div>
+
+
+
+<div class="col-lg-3">
+
+
+<div class="form-group">
+<label>Discapacidades</label>
+<textarea class="form-control" type="textarea" rows="2" id ="disF" name ="disF" placeholder ="Discapacidades..."><?php echo $paciente->discapacidades; ?></textarea>
+</div>
+
+</div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-lg-2">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">Actualizar Paciente
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?-->
+        </button>
+    </div>
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close(); ?>

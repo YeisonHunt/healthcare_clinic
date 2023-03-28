@@ -1,0 +1,66 @@
+<?php View::content(); ?>
+
+<?php echo Form::open(); ?>
+
+<div class="row">
+
+    <div class="col-lg-2">
+        <div class="actions">
+            <?= Html::linkAction("buscar/", 'Buscar materia', 'class="btn btn-info"') ?>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<br>
+
+<div class="row">
+
+
+
+<div class="col-lg-3">
+
+        <div class="form-group" style="display:none;">
+            <input type="text" name="periodoN" id="periodoN"  value ="1" class="form-control" placeholder="Grado">
+             </div>
+            <label for="example">Filtrar Materias por grado</label>
+
+            <div class="form-group">
+            <select class="form-control"  name ="gradoS" id="gradoS">
+           <optgroup label="Grados Actuales">
+                <option value ="13">Preescolar</option>
+                <option value ="1">Primero</option>
+                <option value ="2">Segundo</option>
+                <option value ="3">Tercero</option>
+                 <option value ="4">Cuarto</option>
+                <option value ="5">Quinto</option>
+                <option value ="6">Sexto</option>
+                <option value ="7">Séptimo</option>
+               
+                <option value ="8">Octavo</option>
+                <option value ="9">Noveno</option>
+                <option value ="10">Décimo</option>
+                
+               
+               
+              </optgroup>
+            </select>
+
+        </div>
+
+
+    </div>
+
+</div>
+<div class="row">
+
+ <div class="col-lg-1">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">Filtrar por grado
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
+        </button>
+    </div>
+    
+</div>
+
+<!-- /.row -->
+<?php echo Form::close(); ?>

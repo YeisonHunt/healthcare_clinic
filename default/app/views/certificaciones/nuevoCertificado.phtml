@@ -1,0 +1,72 @@
+<?php View::content(); ?>
+
+
+<div class="row">
+<div class="col-lg-7">
+<div class="panel panel-primary">
+  <div class="panel-heading">Generando certificado a :  </div>
+  <div class="panel-body"><?php echo $paciente->nombreP."&nbsp".$paciente->apellidoP; ?></div>
+</div>
+</div>
+</div>
+
+
+
+<div class ="row">
+
+ <?php echo Form::open(); ?>
+ <input type ="hidden" name ="temp" id ="temp" value="2">
+
+       
+      
+
+
+ <div class="col-lg-7">
+
+ <div class="form-group">
+            <label>Rangos de edad</label> 
+            <select class="form-control" name ="rangoEdad" id ="rangoEdad">
+            <option value ="adultos" >Para Adultos</option>
+            <option value ="children" >Para niños</option>
+          
+            </select>
+        </div>
+   <br>
+
+<label>Lugar de Expedición (Cédula Paciente)</label>
+<input type="text" name ="lugarExpedicion" id="lugarExpedicion" class="form-control" placeholder="Lugar Expedición cédula del paciente Ej:Isnos,Pitalito,Neiva,etc..." required>
+
+<br>
+
+
+
+<label>Dirección Centro Médico </label>
+<input type="text" name ="direccion" id="direccion" class="form-control" placeholder="Ejemplo : Calle 23 Norte #4-68,Pitalito-Huila" required>
+
+<br>
+<label>Fecha de atención (paciente)  </label>
+<input type="date" name ="fechaPedida" id="fechaPedida" class="form-control"  required>
+
+
+<br>
+<label>Fecha del certificado </label>
+<input type="date" name ="fechaCer" id="fechaCer" class="form-control"  required>
+
+
+<br>
+<label>Razón de la consulta (enfermedad o aquejamiento por la que vino el paciente)</label>
+  <textarea class="form-control" rows="3" id="reason" name ="reason" placeholder ="Razón del certificado o motivo de la consulta del paciente (minúsculas preferiblemente)
+
+" required></textarea>
+<hr>
+<button class="btn btn-danger" type="submit" name="Buscar">Generar Certificado</button>
+
+</div>
+
+ 
+
+ <?php echo Form::close(); ?>
+
+
+
+</div>

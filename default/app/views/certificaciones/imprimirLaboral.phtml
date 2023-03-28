@@ -1,0 +1,158 @@
+<?php
+View::content();
+
+
+$css = file_get_contents('css/boot/bootstrap.css');
+
+
+$partes = explode("-",$fechaExp);
+
+$meses =array('Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre');
+
+$partes2 = explode("-",$fechaPedida);
+
+
+
+
+
+
+
+  $html = '
+<html>
+<head>
+
+
+
+<style> 
+
+
+@page { sheet-size: Letter; }
+
+
+#example1 {
+       background-image: url(img/historiaFinal.png);;
+    background-repeat: no-repeat, repeat;
+    width:100%;
+    height:100%;
+    margin-left:5px;
+    
+}
+
+
+td {
+
+
+  padding:2px;
+}
+
+
+</style>
+
+
+</head>
+<body>
+
+
+<div id="example1" >
+
+<div id ="consultorioData" style= "text-align:left; margin-left:10cm; padding-top:2cm;">
+<h5> Dir:'.$dirCon.'</h5>
+<h5> Tel:'.$telCon.'</h5>
+<h5> Cel: '.$celCon.'</h5>
+
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<br>
+<br>
+
+
+
+<div id="medicamentos" style="margin-left:40px; padding-top:400px; margin-right:60px; ">
+
+<br><br>
+
+
+
+<h2 style ="text-align:center;">Certifica</h2>
+<h6>-------------------------------------------------------------------------------------------------------------------------------------------</h6>
+<br>
+<br>
+<br>
+
+
+<h5 style ="text-align:justify; text-justify: inter-word; margin-right:30px;">'.$razon.'.</h5>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<h5>La presente se expide por solicitud del interesado(a), el día '.$partes[2].' de '.$meses[intval($partes[1])-1].' del  '.$partes[0].'</h5>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<br>
+<br>
+
+<h5 style ="text-align:left;">__________________________________________</h5>
+<br>
+<h5 style ="text-align:left;"><b>Carlos Eduardo Urbano<b></h5>
+<h6 style ="text-align:left;">Médico general & Homeópata</h6>
+
+</div> <!--Medicamentos -->
+
+
+</div><!-- Imagen-->
+
+
+</body>
+</html>
+';
+
+
+
+
+
+
+ 
+
+Load::lib('pdf/mpdf');
+
+   //   $mpdf = new mPDF('utf-8', array(896,477));
+
+ $mpdf = new mPDF('c','', 0, '', '0', '0', '0', '0', '0', '0', 'Letter');
+ //$mpdf = new mPDF('utf-8', 'Letter-L');
+
+
+    $html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
+    $mpdf->WriteHTML($css, 1);
+   
+
+
+    $mpdf->WriteHTML($html);
+   
+
+  
+   $string = 'certificado'.$paciente->nombreP.$paciente->apellidoP.$date.'.pdf';
+  
+  
+    
+    $mpdf->Output($string, 'I');
+
+exit;
+
+ 
+    ?>

@@ -1,0 +1,113 @@
+<?php
+    View::content(); 
+    Load::lib('pdf/mpdf');
+
+    $space ="&nbsp;";
+
+    $css = file_get_contents('css/sbadmin/bootstrap.css');
+
+    $html = '<div class="row text-center">
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">INSTITUCIÓN EDUCATIVA BELÉN</th>
+                        <th class="text-center">SISTEMA ACADEMICO</th>
+                        <th class="text-center">AÑO ESCOLAR '.$anio->numeroAnio.'</th>
+                        <th class="text-center">CURSO '. $grado->nombreGrado . '</th>
+                        <th class="text-center">PERIODO '. $periodoSel .' </th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">IDENTIFICACIÓN</th>
+                        <th class="text-center">DOCENTE</th>
+                        <th class="text-center">MATERIA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center"> '. $profesor->identidadPro.' </td>
+                        <td class="text-center"> '.$profesor->nombrePro.$space.$profesor->apellidoPro .' </td>
+                        <td class="text-center"> '. $materia->nombreMateria .' </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">No.</th>
+                        <th class="text-center">Identificación</th>
+                        <th class="text-center">Nombres</th>
+                        <th class="text-center">Apellidos</th>
+                        <th class="text-center">Faltas</th>
+                        <th class="text-center">Taller</th>
+                        <th class="text-center">Prueba Escrita</th>
+                        <th class="text-center">Laboratorios</th>
+                        <th class="text-center">Evaluación Oral</th>
+                        <th class="text-center">Evaluación Escrita</th>
+                        <th class="text-center">Puntualidad</th>
+                        <th class="text-center">Presentación Personal</th>
+
+                        <th class="text-center">Comportamiento</th>
+                        <th class="text-center">Interés y Participación</th>
+                        <th class="text-center">Valoración</th>
+                        <th class="text-center">Nota</th>
+                        <th class="text-center">PUESTO</th>
+                    </tr>
+                </thead>
+                <tbody>';
+                  
+       for ($i=0; $i < count($listaAlumnos) ; $i++) { 
+           
+$html.=' <tr><td class="text-center">'.$listaAlumnos[$i]->nombre.'</td> ';
+$html.=' <tr><td class="text-center">'.$listaAlumnos[$i]->apellido.'</td></tr> ';
+
+       }
+
+
+
+                $html.='</tbody>
+            </table>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">S = Superior</th>
+                        <th class="text-center">A = Alto</th>
+                        <th class="text-center">B+ = Básico</th>
+                        <th class="text-center">B- = Bajo</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+<div class="row text-center">
+    <div class="col-lg-12">
+        <b>OBSERVACIONES: '. $observaciones .'</b>
+    </div>
+</div>
+<!-- /.row -->
+
+
+<br /><br />
+
+<div class="row text-center">
+    <div class="col-lg-2">
+        ___________________________
+
+        <b> <br />'. $nombreRector .'<br />Rector</b>
+    </div>
+</div>';
+
+
+$mpdf = new mPDF('c', 'A4-L');
+$mpdf->WriteHTML($css, 1);
+$mpdf->WriteHTML($html);
+$mpdf->Output('informe.pdf', 'I');
+
+?>

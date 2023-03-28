@@ -1,0 +1,70 @@
+<?php View::content();  // Profesores Terminado ?>
+
+<div class="row">
+
+    <div class="col-lg-5">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Procedimiento Actual: </div>
+            <div class="panel-body"><b><?php echo $tp->tituloTipo; ?></b></div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<!-- /.row -->
+
+<!-- /.row -->
+
+<br>
+
+<h4>Lista de Medicamentos </h4>
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-stripped">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>#</th>
+                        <th>Cantidad</th>
+                        <th>Descripción</th>
+                        <th>Forma Farmacéutica</th>
+                        <th>Necesidad</th>
+                     
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for ($i = 0; $i < count($listaMedicamentos); $i++) { ?>
+                    <tr>
+                        <td><?php echo ($i + 1); ?></td>
+                        <td><?php echo $listaMedicamentos[$i]->cantidad ?></td>
+                        <td><?php echo $listaMedicamentos[$i]->descripcionPro ?></td>
+                        <td><?php echo $listaMedicamentos[$i]->formaFarma ?></td>
+                        <td><?php echo $listaMedicamentos[$i]->necesidad ?></td>
+
+
+                        <?php
+                        $idPro = $listaMedicamentos[$i]->idPro;
+                        $idTipo= $listaMedicamentos[$i]->tipoProcedimiento_idTipo;
+                        ?>
+
+                      
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+<div class="row">
+
+  <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("formularP", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,200 @@
+<!-- /.row -->
+<?php View::content(); ?>
+<?php echo Form::open("logros/index"); ?>
+<div class="row">
+    <div class="col-lg-2">
+        <div class="actions">
+            <?= Html::link("logros/index", 'Menú Principal', 'class="btn btn-success"') ?>
+        </div>
+    </div>
+
+    <?php 
+
+    $array2 = array();
+    if ($selectorG == 13) $array2[0] = 'selected'; else $array2[0] = '';
+    if ($selectorG == 1) $array2[1] = 'selected'; else $array2[1] = '';
+    if ($selectorG == 2) $array2[2] = 'selected'; else $array2[2] = '';
+    if ($selectorG == 3) $array2[3] = 'selected'; else $array2[3] = '';
+    if ($selectorG == 4) $array2[4] = 'selected'; else $array2[4] = '';
+    if ($selectorG == 5) $array2[5] = 'selected'; else $array2[5] = '';
+    if ($selectorG == 6) $array2[6] = 'selected'; else $array2[6] = '';
+    if ($selectorG == 7) $array2[7] = 'selected'; else $array2[7] = '';
+    if ($selectorG == 8) $array2[8] = 'selected'; else $array2[8] = '';
+    if ($selectorG == 9) $array2[9] = 'selected'; else $array2[9] = '';
+    if ($selectorG == 10) $array2[10] = 'selected'; else $array2[10] = '';
+    if ($selectorG == 11) $array2[11] = 'selected'; else $array2[11] = '';
+
+    $_SESSION['selectorG']=$selectorG;
+    
+    
+    $array = array();
+    if ($selectorM == "MATEMATICAS") $array[0] = 'selected'; else $array[0] = '';
+    if ($selectorM == "LENGUA CASTELLANA") $array[1] = 'selected'; else $array[1] = '';
+    if ($selectorM == "INGLES") $array[2] = 'selected'; else $array[2] = '';
+    if ($selectorM == "CIENCIAS SOCIALES") $array[3] = 'selected'; else $array[3] = '';
+    if ($selectorM == "CIENCIAS NATURALES") $array[4] = 'selected'; else $array[4] = '';
+    if ($selectorM == "EDUCACION ARTISTICA") $array[5] = 'selected'; else $array[5] = '';
+    if ($selectorM == "EDUCACION RELIGIOSA") $array[6] = 'selected'; else $array[6] = '';
+    if ($selectorM == "EDUCACION FISICA") $array[7] = 'selected'; else $array[7] = '';
+    if ($selectorM == "ETICA Y VALORES") $array[8] = 'selected'; else $array[8] = '';
+    if ($selectorM == "TECNOLOGIA E INFORMATICA") $array[9] = 'selected'; else $array[9] = '';
+    if ($selectorM == "PROYECTO") $array[10] = 'selected'; else $array[10] = '';
+    if ($selectorM == "MATEMATICAS") $array[11] = 'selected'; else $array[11] = '';
+
+    if ($selectorM == "ESPAÑOL") $array[12] = 'selected'; else $array[12] = '';
+    if ($selectorM == "QUIMICA") $array[13] = 'selected'; else $array[13] = '';
+    if ($selectorM == "INGLES") $array[14] = 'selected'; else $array[14] = '';
+    if ($selectorM == "EDUCACION FISICA") $array[15] = 'selected'; else $array[15] = '';
+    if ($selectorM == "FILOSOFIA") $array[16] = 'selected'; else $array[16] = '';
+
+    if ($selectorM == "ARTISTICA") $array[17] = 'selected'; else $array[17] = '';
+    if ($selectorM == "ETICA") $array[18] = 'selected'; else $array[18] = '';
+    if ($selectorM == "ECONOMIA") $array[19] = 'selected'; else $array[19] = '';
+    if ($selectorM == "FISICA") $array[20] = 'selected'; else $array[20] = '';
+    if ($selectorM == "RELIGION") $array[21] = 'selected'; else $array[21] = '';
+    if ($selectorM == "INFORMATICA") $array[21] = 'selected'; else $array[22] = '';
+    
+ $_SESSION['selectorM']=$selectorM;
+
+
+    ?>
+
+
+    <div class="col-lg-3">
+
+        <div class="form-group">
+            <select class="form-control"  name ="gradoF"id="gradoF">
+             <optgroup label="Grado">
+                <option value="13" <?= $array2[0] ?>>Preescolar</option>
+                <option value="1" <?= $array2[1] ?>>Primero</option>
+                <option value="2" <?= $array2[2] ?>>Segundo</option>
+                <option value="3" <?= $array2[3] ?>>Tercero</option>
+                <option value="4" <?= $array2[4] ?>>Cuarto</option>
+                <option value="5" <?= $array2[5] ?>>Quinto</option>
+                <option value="6" <?= $array2[6] ?>>Sexto</option>
+                <option value="7" <?= $array2[7] ?>>Séptimo</option>
+                <option value="8" <?= $array2[8] ?>>Octavo</option>
+                <option value="9" <?= $array2[9] ?>>Noveno</option>
+                <option value="10" <?= $array2[10] ?>>Décimo</option>
+                <option value="11" <?= $array2[11] ?>>Undécimo</option>
+            </optgroup>
+
+        </select>
+
+    </div>
+
+
+</div>
+
+<div class="col-lg-3">
+
+    <div class="form-group" style="display:none;">
+        <input type="text" name="periodoA" id="periodoA" class="form-control" value="2">
+    </div>
+
+
+    <div class="form-group">
+        <select class="form-control"  name ="materiaF" id="materiaF">
+           <optgroup label="Materias Primaria">
+            <option value ="MATEMATICAS" <?= $array[0] ?>>Matemáticas</option>
+            <option value ="LENGUA CASTELLANA" <?= $array[1] ?>>Lengua Castellana</option>
+            <option value ="INGLES" <?= $array[2] ?>>Inglés</option>
+            <option value ="CIENCIAS SOCIALES" <?= $array[3] ?>>Ciencias Sociales</option>
+            <option value ="CIENCIAS NATURALES" <?= $array[4] ?>>Ciencias Naturales</option>
+            <option value ="EDUCACION ARTISTICA"<?= $array[5] ?>>Educación Artística</option>
+            <option value ="EDUCACION RELIGIOSA" <?= $array[6] ?>>Educación Religiosa</option>
+            <option value ="EDUCACION FISICA" <?= $array[7] ?>>Educación Física</option>
+            <option value ="ETICA Y VALORES" <?= $array[8] ?>>Ética y Valores</option>
+            <option value ="TECNOLOGIA E INFORMATICA" <?= $array[9] ?>>Tenología e Informática</option>
+
+        </optgroup>
+        <optgroup label="Materias Secundaria">
+            <option value ="PROYECTO" <?= $array[10] ?>>Proyecto P.P.P</option>
+            <option value ="MATEMATICAS" <?= $array[11] ?>>Matemáticas</option>
+            <option value ="ESPAÑOL" <?= $array[12] ?>>Español</option>
+            <option value ="QUIMICA" <?= $array[13] ?>>Química</option>
+            <option value ="INGLES" <?= $array[14] ?>>Inglés</option>
+            <option value ="EDUCACION FISICA" <?= $array[15] ?>>Educación Física</option>
+            <option value ="FILOSOFIA" <?= $array[16] ?> >Filosofía</option>
+            <option value ="ARTISTICA" <?= $array[17] ?>>Artística</option>
+            <option value ="ETICA" <?= $array[18] ?>>Ética</option>
+            <option value ="ECONOMIA" <?= $array[19] ?>>Economía</option>
+            <option value ="FISICA" <?= $array[20] ?>>Física</option>
+            <option value ="RELIGION" <?= $array[21] ?>>Religión</option>  
+            <option value ="INFORMATICA" <?= $array[22] ?>>Religión</option>  
+        </optgroup>
+
+
+    </select>
+</div>
+
+</div>
+
+<div class="col-lg-2" >
+    <button class="btn btn-primary waves-effect waves-light" type="submit" name="Ingresar">Filtrar Nuevamente
+        <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
+    </button>
+</div>
+
+
+</div>
+</div>
+
+<?php echo Form::close(); ?>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <br />
+                <thead>
+                    <tr>
+                        <th>ID Logro</th>
+                        <th>Materia</th>
+                        <th>Fortaleza</th>
+                        <th>Debilidad</th>
+                        <th>Periodo</th>
+                        <th>Grado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <?php
+
+                    
+
+                    for($i=0; $i<count($listaLogros); $i++) {
+if( $listaLogros[$i]->gradoMateria==13){
+
+                         $listaLogros[$i]->gradoMateria= "Preescolar";
+
+                    }
+                       ?>
+                       <tr>
+
+                        <td><?php echo $listaLogros[$i]->idLogro ?></td>  
+                        <td><?php echo $listaLogros[$i]->nombreMateria ?></td>  
+                        <td><?php echo $listaLogros[$i]->fortaleza ?></td>  
+                        <td><?php echo $listaLogros[$i]->debilidad ?></td>
+                        <td><?php echo $listaLogros[$i]->periodo_idPeriodo ?></td>          
+                        <td><?php echo $listaLogros[$i]->gradoMateria ?></td>   
+
+
+                        <td>
+
+                         <?php  $idLogro= $listaLogros[$i]->idLogro;  
+                         $_SESSION['listaLogros']=$listaLogros;
+
+                         ?>
+
+                         <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("edit/$idLogro", ' Editar Logro') ?>
+
+                     </td>
+                 </tr>
+                 <?php }?>
+             </tbody>
+         </table>
+     </div>
+ </div>
+</div>

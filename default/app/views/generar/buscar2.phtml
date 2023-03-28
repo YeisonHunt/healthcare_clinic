@@ -1,0 +1,57 @@
+<?php View::content(); ?>
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">     
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                        <th>#</th>
+                        <th>Documento</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Grado</th>
+                        <th>Estado</th>
+                        <th>Matricula</th>
+                        <th>Acudiente</th>
+                      
+                        <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                         <?php for($i=0; $i<count($listaAlumnos2); $i++) { ?>
+                            <tr>
+                                <td><?php echo $i ?></td>    
+                                <td><?php echo $listaAlumnos2[$i]->identidadAl ?></td>
+                                <td><?php echo $listaAlumnos2[$i]->nombre ?></td>
+                                <td><?php echo $listaAlumnos2[$i]->apellido ?></td>
+                             
+                                <td><?php echo $listaAlumnos2[$i]->nombreGrado ?></td>
+                                <td><?php echo $listaAlumnos2[$i]->tipoEstado ?></td>
+                                <td><?php echo $listaAlumnos2[$i]->estadoMatricula ?></td>
+                                <td><?php echo $listaAlumnos2[$i]->nombreAcu ?></td>
+                               
+                                <td>
+                                   <?php  $temp=intval($listaAlumnos2[$i]->idAlumno); ?>
+                                    <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("cargarCarnet/$temp/", ' Generar Carnet') ?>
+                                    
+                                </td>
+                            </tr>
+                             <?php } ?>
+                        </tbody>
+                    </table>
+                     
+            
+        </div>
+    </div>
+</div>
+<div class="row">
+
+<div class="col-lg-1">
+        <div class="actions">
+            <?= Html::link("generar/create_carnet", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+
+    </div>

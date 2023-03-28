@@ -1,0 +1,61 @@
+* {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#contenedor {
+    margin: 4em auto;
+    max-width: 35%;
+}
+
+.institucion {
+    background: #2bbbad;
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.formulario {
+    background: white;
+}
+
+.disminuir {
+    padding: 15px 0;
+    max-width: 80%;
+}
+
+.boton {
+    text-align: center;
+}
+
+footer {
+    background: white;
+}
+
+/*Media Querys*/
+
+@media screen and (max-width: 800px) {
+
+    #contenedor {
+        max-width: 50%;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+
+    #contenedor {
+        max-width: 70%;
+    }
+}
+
+
+@media screen and (max-width: 360px) {
+
+    #contenedor {
+        margin: 2em auto;
+        max-width: 90%;
+    }
+}

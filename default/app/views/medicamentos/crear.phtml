@@ -1,0 +1,102 @@
+<?php View::content(); ?>
+
+<?php echo Form::open("medicamentos/crear"); ?>
+
+<h4>Creación  del medicamento </h4>
+<hr>
+
+<div class="row">
+
+    <div class="col-lg-3">
+        <div class="form-group">
+            <label for="idProF">Nombre ó Descripción</label>
+
+            <textarea name="descripcionM" id="descripcionM" rows="2" class="form-control" placeholder="Título descriptivo"></textarea> 
+            
+            <input type="hidden" name="valN" id="valN" class="form-control" value ="2" > 
+      
+        </div>
+    </div>
+    </div>
+    <div class="row">
+ 
+
+    <div class="col-lg-3">
+        <div class="form-group">
+            <label for="nombreF">Forma Farmacéutica</label>
+            <input type="text" name="formaFarmaM"  id="formaFarmaM" placeholder ="Frasco,Ampolleta,Bolsa..."class="form-control"  
+             required>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+
+    <div class="col-lg-3">
+
+        <div class="form-group">
+            <label for="apellidoF">Posología  </label>
+            <textarea name="necesidadM" rows="2" class="form-control" placeholder="Posología"  id="necesidadM" placeholder ="Posología"></textarea>   
+                
+           
+        </div>
+    </div>
+    </div>
+
+<div class="row">
+
+    <div class="col-lg-3">
+
+        <div class="form-group">
+            <label for="celularF">Precio  ($) </label>
+            <input type="number" name="precio" id="precio" placeholder="7500" class="form-control"
+             required>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="row">
+
+<div class="col-lg-3">
+
+    <div class="form-group">
+        <label for="celularF">Descuento  (0  - 100)%  </label>
+        <input type="number" name="descuento" id="descuento" min="0"max="100" step="1" class="form-control"
+         required>
+    </div>
+</div>
+
+
+</div>
+
+<!-- SEGUNDA COLUMMNA -->
+
+
+
+
+
+<!-- /.row -->
+
+<hr>
+
+
+
+
+<div class="row">
+
+    <div class="col-lg-2">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">Guardar Medicamento
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?-->
+        </button>
+    </div>
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close(); ?>

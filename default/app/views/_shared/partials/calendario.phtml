@@ -1,0 +1,16 @@
+<script type="text/javascript">
+$(document).ready(function()
+{ 
+$("#ical").ical({
+daynames: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+//startOnSunday: true,
+eventdates: <?php 
+$modelo =$_SESSION['calendario'];
+
+
+echo json_encode($modelo);?>
+});
+});
+
+</script>
+<div id="ical"></div>

@@ -1,0 +1,79 @@
+<?php View::content();  // Index Sistema?>
+
+<h4><small>Recordamos que los <b>Años Lectivos</b> solo son editables, debido a que en ellos se enlaza información de todos los estudiantes, notas, periodos y demás.</small></h4>
+<h4><small>Cuando creas el Año Lectivo automáticamente se crean <b>2 semestres</b> y los <b>4 periodos</b> correspondientes.</small></h4>
+
+
+<br/>
+
+<div class="row">
+    <div class="col-lg-2">
+        <div class="actions">
+            <?= Html::linkAction("create/", 'Crear año lectivo', 'class="btn btn-primary"') ?>
+        </div>
+    </div>
+
+    <div class="col-lg-2">
+        <div class="actions">
+            <?= Html::linkAction("buscar/", 'Buscar año lectivo', 'class="btn btn-info"') ?>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-2">
+        <?php if ($listaLectivos->prev) echo Html::linkAction("index/$listaLectivos->prev/", '<< Anterior'); ?>
+    </div>
+    <div class="col-lg-2">
+        <?php if ($listaLectivos->next) echo Html::linkAction("index/$listaLectivos->next/", 'Próximo >>'); ?>
+    </div>
+</div>
+<!-- /.row -->
+
+<br>
+
+<h4>Lista de Años Lectivos Actuales</h4>
+<br>
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>#</th>
+                        <th>Año Lectivo</th>
+                        <th>Rector(a)</th>
+                        <th>Acciones</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <?php  $num=0; ?>
+                    <?php foreach ($listaLectivos->items as $item) : ?>
+                        <tr>
+
+                            <td><?php echo $num; ?></td>
+                            <td><?php echo $item->numeroAnio ?></td>
+                             <td><?php echo $item->anioRectora ?></td>
+                            <?php  $num++; ?>
+                            
+                            <td>
+                                <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("edit/$item->idAnio/", ' Editar Rector(a)') ?>
+                               
+                                
+                            </td>  
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->

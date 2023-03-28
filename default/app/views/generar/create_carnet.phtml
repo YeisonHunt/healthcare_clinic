@@ -1,0 +1,123 @@
+<?php View::content(); ?>
+
+<?php echo Form::open() ?>
+
+
+<div class="row">
+
+  <div class="col-lg-3">
+
+
+         <div class="form-group">
+             <h4>Seleccion el año lectivo actual</h4>
+            <select class="form-control" name ="idAnioF" id="idAnioF">
+             <optgroup label="Años Lectivos Actuales">
+              <?php foreach ($anio->items as $item) : ?>
+                <option value='<?php echo $item->idAnio ?>'> <?php echo $item->idAnio?> </option>
+              <?php endforeach; ?>
+              </optgroup>
+            </select>
+        </div>  
+
+</div>
+
+   
+
+     <div class="col-lg-2">
+     <div class="actions" style="padding-top:38px;">
+        <button class="btn btn-info waves-effect waves-light" type="submit" name="Ingresar">Guardar Año
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
+        </button>
+        </div>
+    </div>
+
+    
+
+</div>
+<?php echo Form::close(); ?>
+<hr>
+<?php echo Form::open("generar/recibirDatos/"); ?>
+<div class="row">
+
+     <div class="col-lg-2">
+     <?php 
+     $desactivador;
+     if($anioSel=="NO SELECCIONADO"){
+
+        $desactivador='disabled';
+        $style="pointer-events:none; color:#A9A9A9;";
+     }else{
+
+      $desactivador='';
+         $style=NULL;
+     }
+
+     ?>
+
+  <h4>Año</h4>
+
+     <div class="form-group">
+            <input  name="idAnio" id="idAnio" class="form-control" value="<?php echo $anioSel; ?>" disabled>
+        </div>
+        </div>
+
+        <div class="col-lg-3">
+
+
+        <div class="form-group" style="display:none;">
+            <input type="text" name="gradoN" id="gradoN" class="form-control" placeholder="Grado" value="2">
+        </div>
+
+        <div class="form-group" style="display:none;">
+            <input type="number" name="idAnio2" id="idAnio2" class="form-control"  value="<?php echo $anioSel; ?>">
+        </div>
+        
+        <h4>Seleccionar grado</h4>
+
+        <div class="form-group">
+            <select class="form-control"  name ="gradoF"id="gradoF" <?php echo $desactivador;?>>
+                <optgroup label="Grados">
+                    <option value ="13">Preescolar</option>
+                    <option value ="1">1</option>
+                    <option value ="2">2</option>
+                    <option value ="3">3</option>
+                    <option value ="4">4</option>
+                    <option value ="5">5</option>
+                    <option value ="6">6</option>
+                    <option value ="7">7</option>
+                    <option value ="8">8</option>
+                    <option value ="9">9</option>
+                    <option value ="10">10</option>
+                </optgroup>
+            </select>
+
+
+        </div>
+    </div>
+
+    <div class="col-lg-2">
+        <div class="actions" style="padding-top:38px; <?php echo $style?>;">
+            <?= Html::linkAction("buscar/", 'Buscar Alumnos Individuales', 'class="btn btn-primary"') ?>
+        </div>
+    </div>
+
+
+  
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-3">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="generar" <?php echo $desactivador;?> >Generar Carnet por grados
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
+        </button>
+    </div>
+
+
+
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close(); ?>

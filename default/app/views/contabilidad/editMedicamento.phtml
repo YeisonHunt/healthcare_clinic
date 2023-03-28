@@ -1,0 +1,59 @@
+<?php View::content(); ?>
+
+<?php echo Form::open(); ?>
+
+<div class="row">
+
+    <div class="col-lg-3">
+
+        <div class="form-group">
+            <label>Cantidad (Unidades)</label>
+            <input type="text" name="cF"  id="cF" class="form-control" value='<?php echo $procedimiento->cantidad; ?>' > 
+
+            <input type="hidden" name="idPro"  id="idPro" class="form-control" value='<?php echo $procedimiento->idPro; ?>' > 
+
+        </div>
+        <div class="form-group">
+            <label>Descripción </label>
+            <textarea  name="dF"  id="dF" class="form-control" rows="2" ><?php echo $procedimiento->descripcionPro; ?></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Forma Farmacéutica</label>
+    <input type="text" name="ffF"  id="ffF" class="form-control" value='<?php echo $procedimiento->formaFarma; ?>'>
+        </div>   
+
+          <div class="form-group">
+            <label>Necesidad</label>
+            <input type="text" name="nF"  id="nF" class="form-control" value='<?php echo $procedimiento->necesidad; ?>'>
+        </div>   
+        
+        
+    
+
+    </div>
+
+   
+
+</div>
+<!-- /.row -->
+<hr>
+
+<div class="row">
+
+    <div class="col-lg-1">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Actualizar">Actualizar
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?-->
+        </button>
+    </div>
+
+    <div class="col-lg-1" style="margin-left:20px;">
+        <div class="actions">
+            <?= Html::linkAction("procedimientos", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close(); ?>

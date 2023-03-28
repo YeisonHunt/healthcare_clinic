@@ -1,0 +1,43 @@
+<?php View::content(); ?>
+
+<?php echo Form::open(); ?>
+
+<div class="row">
+
+    <div class="col-lg-3">
+ <div class="form-group">
+              <label>Modificando Año :</label>
+            <p class="form-control-static" ><?php echo $anio->numeroAnio; ?></p>
+        </div>
+
+        <div class="form-group">
+            <label>Nuevo nombre de rector(a):</label>
+            <input type="text" name="rectoraF"  id="rectoraF" class="form-control" value='<?php echo $anio->anioRectora; ?>' > 
+            <input type="hidden" name="idAnioF"  id="idAnioF" class="form-control" value='<?php echo $anio->idAnio; ?>' > 
+        </div>
+       
+
+    </div>
+
+   
+
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-1">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Actualizar">Actualizar
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?-->
+        </button>
+    </div>
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close(); ?>

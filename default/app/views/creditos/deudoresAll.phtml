@@ -1,0 +1,86 @@
+<?php View::content();  // Profesores Terminado?>
+
+<div class="row">
+        <div class="col-lg-4">
+             <?php   echo Html::linkAction("imprimirListaCreditosAll/", 'Imprimir Lista Completa Deudores','class="btn btn-primary"'); ?>
+        </div>
+</div>
+
+<hr>
+
+<!-- /.row -->
+
+<h4 style ="color:#673ab7;">Listando TODOS los pacientes con créditos.</h4>
+<h4 style ="color:#673ab7;">Deuda Acomulada : <?php echo number_format($deudaTotal->suma); ?> pesos</h4>
+<hr>
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>No</th>
+                        <th>Cédula</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Descripción deuda</th>
+                        <th>Fecha Creación</th>
+                        <th>Fecha Última Modificación</th>
+                       
+                        <th>Editar Completo</th>
+                        <th>Total deuda</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for($i=0; $i<count($listaCreditos); $i++) { ?>
+                    <tr>
+                     <td><?php echo $listaCreditos[$i]->idCredito ?></td>
+                     <td><b><?php echo $listaCreditos[$i]->cedulaP ?><b></td>
+                     <td><?php echo $listaCreditos[$i]->nombreP ?></td>
+                     <td><?php echo $listaCreditos[$i]->apellidoP ?></td>
+                     <td><?php echo $listaCreditos[$i]->des ?></td>
+                     <td><?php echo $listaCreditos[$i]->fecha ?></td>
+                     <td><?php echo $listaCreditos[$i]->fechaMod ?></td>
+                     <?php 
+
+                         $idCredito = $listaCreditos[$i]->idCredito;
+                      ?>
+
+                    </td> 
+ 
+                    <td> 
+                      
+                     <i class="fa fa-fw fa-check"></i>
+
+                    <?php echo Html::linkAction("edit2/$idCredito", ' Cancelar deuda total','onclick="return confirm(\'¿Está seguro de cancelar toda la deuda?\')"') ?>
+                    <?php echo "<br>" ?>
+
+     
+                     <i class="fa fa-fw fa-edit"></i><?php   echo Html::linkAction("edit/$idCredito", 'Editar este crédito');
+
+            ?>
+
+                    </td>
+
+                    <td><b><?php echo number_format($listaCreditos[$i]->deuda) ?></b></td> 
+
+
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+  <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<?php View::content(); ?>
+
+<div class="row">
+    <div class="col-lg-3">
+        <div class="form-group input-group">
+            <span class="input-group-btn">
+                <?php echo Form::open("sistema/buscar/"); ?>
+               <h4>Introduza el año...</h4>
+                <input type="number" name="anioF" min="2016" id ="anioF" class="form-control" placeholder="Introduzca el año por favor.." required>
+                <button class="btn btn-default" type="submit" name="Buscar"><i class="fa fa-search"></i></button>
+                <?php echo Form::close(); ?>
+            </span>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">     
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                          <th>#</th>
+                        <th>Año Lectivo</th>
+                        <th>Rector(a)</th>
+                        <th>Acciones</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                      <?php for($i=0; $i<count($listaLectivos); $i++) { ?>
+                            <tr>
+                                <td><?php echo $i ?></td>    
+                                <td><?php echo $listaLectivos[$i]->numeroAnio ?></td>
+                                <td><?php echo $listaLectivos[$i]->anioRectora ?></td>
+                                                       
+                               
+                                <td>
+                                   <?php  $temp=intval($listaLectivos[$i]->idAnio); ?>
+                                    <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("edit/$temp/", ' Editar') ?>
+                                  
+                                </td>
+                            </tr>
+                             <?php } ?>
+                        </tbody>
+                    </table>
+                     
+            
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->

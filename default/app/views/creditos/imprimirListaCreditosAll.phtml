@@ -1,0 +1,144 @@
+<?php
+View::content();
+
+ $css = file_get_contents('css/boot/bootstrap.css');
+
+  $html = '
+<html>
+<head>
+
+
+
+<style> 
+
+
+@page { sheet-size: Letter; }
+
+
+#example1 {
+       background-image: url(img/fondoBlancoCarta.png);;
+    background-position: right bottom, left top;
+    background-repeat: no-repeat, repeat;
+ 
+    
+    
+}
+
+
+
+
+</style>
+
+
+</head>
+<body>
+
+<div id="example1">
+
+<div id="nombre" style="margin-left:405px; padding-top:67px;">
+<h5></h5>
+</div>
+
+<div id="apellido" style="margin-left:405px; padding-top:1px;">
+<h5></h5>
+</div>
+
+<div id="fecha" style="margin-left:405px; padding-top:-1px;">
+<h5></h5>
+</div>
+
+
+<div id="fecha" style="margin-left:676px; padding-top:-2px;">
+<h5></h5>
+</div>
+
+
+<div id="medicamentos" style="margin-left:40px; padding-top:172px; padding-bottom:105px;   ">
+<h5 style="text-align:center; margin-left:-30px;"><center>Lista (Completa) de deudores críticos</center></h5>
+<h5 style="text-align:center; margin-left:-40px;"><center>Deuda Acomulada : '.number_format($deudaTotal->suma).' pesos</center></h5>
+<hr>
+
+<table class="table" style="width:19cm;  "  autosize="1">
+  <thead>
+    <tr>
+      <th>#</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Celular</th>
+                        <th>Descripción</th>
+                        <th>Fecha Creación</th>
+                        <th>Fecha Última Modificación</th> 
+                        
+                        <th>Total deuda</th>
+    
+    </tr>
+  </thead>
+  <tbody>';
+
+
+
+for ($i=0; $i <count($listaCreditos) ; $i++) { 
+
+  
+   $html.='<tr><td> '.($i+1).'</td>';
+ $html.='<td>'.$listaCreditos[$i]->nombreP .'</td>';
+ $html.='<td>'.$listaCreditos[$i]->apellidoP .'</td>';
+ $html.='<td>'.$listaCreditos[$i]->celP .'</td>';
+ $html.='<td>'.$listaCreditos[$i]->des .'</td>';
+ $html.='<td>'.$listaCreditos[$i]->fecha .'</td>';
+ $html.='<td> '.$listaCreditos[$i]->fechaMod .'</td>';
+
+ $html.='<td>'.number_format($listaCreditos[$i]->deuda) .'</td></tr>';
+}
+
+
+
+   
+  $html.='</tbody>
+</table>
+
+
+</div>
+
+
+
+</div>
+
+</body>
+</html>
+';
+
+
+
+
+
+
+
+Load::lib('pdf/mpdf');
+
+   //   $mpdf = new mPDF('utf-8', array(896,477));
+
+ //$mpdf = new mPDF('c','Letter');
+ $mpdf = new mPDF('utf-8', 'Letter');
+ $mpdf->debug = true;
+
+
+    $html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
+    
+    $mpdf->WriteHTML($css, 1);
+   
+
+
+    $mpdf->WriteHTML($html);
+  
+  $string = 'listaCreditosCompleta.pdf';
+  
+  
+    
+    $mpdf->Output($string, 'I');
+
+        exit;
+
+ 
+
+    ?>

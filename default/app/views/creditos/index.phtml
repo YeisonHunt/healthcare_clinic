@@ -1,0 +1,137 @@
+<?php View::content();  // Profesores Terminado?>
+
+<h4 ><b>Sección de búsqueda</b></h4>
+
+<div class="row">
+
+       <div class="col-lg-3">
+        <div class="form-group input-group">
+            <span class="input-group-btn">
+                <?php echo Form::open("creditos/buscar/"); ?>
+                <h4>Nombre</h4>
+                <input type="hidden" name="valN" id ="valN" value="2">
+                <input type="text" name="nombreP" id ="nombreP" class="form-control" placeholder="Introducir Nombre" required>
+                <button class="btn btn-default" type="submit" name="Buscar"><i class="fa fa-search"></i></button>
+                <?php echo Form::close(); ?>
+            </span>
+        </div>
+    </div>
+
+
+
+    <div class="col-lg-3" style ="margin-left:30px;">
+        <div class="form-group input-group">
+            <span class="input-group-btn">
+                <?php echo Form::open("creditos/buscar/"); ?>
+                <h4>Apellido</h4>
+                <input type="hidden" name="valA" id ="valA" value="2">
+                <input type="text" name="apellidoP" id ="apellidoP" class="form-control" placeholder="Introducir Apellido" required>
+                <button class="btn btn-default" type="submit" name="Buscar"><i class="fa fa-search"></i></button>
+                <?php echo Form::close(); ?>
+            </span>
+        </div>
+    </div>
+
+
+
+    <div class="col-lg-3" style ="margin-left:30px;">
+        <div class="form-group input-group">
+            <span class="input-group-btn">
+                <?php echo Form::open("creditos/buscar/"); ?>
+                <h4>Cédula </h4>
+                <input type="hidden" name="valI" id ="valI" value="2">
+                <input type="number" name="cedulaP" id ="cedulaP" class="form-control" placeholder="Introducir Cédula" required>
+                <button class="btn btn-default" type="submit" name="Buscar"><i class="fa fa-search"></i></button>
+                <?php echo Form::close(); ?>
+            </span>
+        </div>
+    </div>
+
+   
+
+
+
+
+
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col-lg-3">
+        <?php   echo Html::linkAction("deudores/", 'Listar deudores críticos','class="btn btn-danger"'); ?>
+    </div>
+    <div class="col-lg-3">
+        <?php   echo Html::linkAction("deudoresAll/", 'Listar TODOS','class="btn btn-success"'); ?>
+    </div>
+ 
+</div>
+
+
+<hr>
+
+<!-- /.row -->
+
+<h4>Lista Últimos 8 Pacientes con crédito registrados...</h4>
+<hr>
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>No</th>
+                        <th>Cédula</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Descripción deuda</th>
+                        <th>Fecha Creación</th>
+                        <th>Fecha Última Modificación</th> 
+                        <th>Editar Completo</th>
+                        <th>Total deuda</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for($i=0; $i<count($listaCreditos); $i++) { ?>
+                    <tr>
+                     <td><?php echo $listaCreditos[$i]->idCredito ?></td>
+                     <td><b><?php echo $listaCreditos[$i]->cedulaP ?><b></td>
+                     <td><?php echo $listaCreditos[$i]->nombreP ?></td>
+                     <td><?php echo $listaCreditos[$i]->apellidoP ?></td>
+                     <td><?php echo $listaCreditos[$i]->des ?></td>
+                     <td><?php echo $listaCreditos[$i]->fecha ?></td>
+                     <td><?php echo $listaCreditos[$i]->fechaMod ?></td>
+                     <?php 
+
+                         $idCredito = $listaCreditos[$i]->idCredito;
+                      ?>
+
+                    </td> 
+ 
+                    <td> 
+                      
+                     <i class="fa fa-fw fa-check"></i>
+
+<?php echo Html::linkAction("edit2/$idCredito", ' Cancelar deuda total','onclick="return confirm(\'¿Está seguro de cancelar toda la deuda?\')"') ?>
+<?php echo "<br>" ?>
+
+     
+                     <i class="fa fa-fw fa-edit"></i><?php   echo Html::linkAction("edit/$idCredito", 'Editar este crédito');
+
+            ?>
+
+                    </td>
+
+                    <td><b><?php echo number_format($listaCreditos[$i]->deuda) ?></b></td> 
+
+
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+<!-- /.row -->

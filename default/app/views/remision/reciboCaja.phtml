@@ -1,0 +1,135 @@
+<?php View::content(); ?>
+
+<?php echo Form::open(); ?>
+
+<h4><b>Introduzca los datos del recibo</b></h4>
+<hr>
+
+<input type="hidden" name ="test" value="2">
+
+<div class="row">
+<div class="col-lg-6">
+<div class="panel panel-primary">
+  <div class="panel-heading">Se imprimirá a continuación :  </div>
+  <div class="panel-body">Recibos de Caja </div>
+</div>
+</div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-lg-2">
+        <div class="form-group">
+            <label for="idProF">Ciudad Expedición</label>
+
+            <input type="text" name="city" id="city" class="form-control" placeholder="Pitalito" required>
+            <input type="hidden" name="idProF" id="idProF" class="form-control" placeholder="Identificación" value ="2"> <!-- valor para formulario-->
+        </div>
+    </div>
+ 
+
+    <div class="col-lg-3">
+        <div class="form-group">
+            <label for="nombreF">Fecha</label>
+            <input type="date" name="fecha"  id="nF" class="form-control" required>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+
+        <div class="form-group">
+            <label for="apellidoF">Recibido de :  </label>
+            <input type="text" name="recibidoDe"  id="aF" class="form-control" placeholder="Recibo de tal personal..." required>
+        </div>
+    </div>
+
+
+    <div class="col-lg-3">
+
+        <div class="form-group">
+            <label for="celularF">Monto en dinero: </label>
+            <input type="number" min ="0" name="monto"  class="form-control" placeholder="300000" required>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-lg-2">
+        <div class="form-group">
+            <label for="idProF">NIT</label>
+
+            <input type="text" name="nit" id="city" class="form-control" placeholder="Ej: 12 346.486-6" required>
+             <!-- valor para formulario-->
+        </div>
+    </div>
+ 
+
+    <div class="col-lg-2">
+        <div class="form-group">
+            <label for="nombreF">Teléfono</label>
+            <input type="text" name="tel"  id="nF" class="form-control" placeholder="312-666-5895" required>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="form-group">
+            <label for="nombreF">Dirección</label>
+            <input type="text" name="dir"  id="nF" class="form-control" placeholder="312-666-5895" required>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="row">
+    
+<div class="col-lg-6">
+
+        <div class="form-group">
+            <label for="apellidoF">La suma de : (dinero en letras)  </label>
+            <input type="text" name="suma"  id="aF" class="form-control" placeholder="Recibo de tal personal..." required>
+        </div>
+    </div>
+
+
+    <div class="col-lg-6">
+
+        <div class="form-group">
+            <label for="celularF">Por concepto de : </label>
+            <input type="text" name="concepto"  class="form-control" placeholder="Alquiler de carro..." required>
+        </div>
+    </div>
+
+</row>
+
+
+
+<hr>
+<br>
+<br>
+<br>
+
+<div class="row" style="margin-left:5px;">
+
+
+  <div class="col-lg-3">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">Generar caja de recibo
+            
+        </button>
+    </div>
+
+
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+
+<?php echo Form::close(); ?>
+<!-- /.row -->
+

@@ -1,0 +1,57 @@
+<?php View::content(); ?>
+
+
+<div class="row">
+<div class="col-lg-7">
+<div class="panel panel-primary">
+  <div class="panel-heading">Generando certificado a :  </div>
+  <div class="panel-body"><?php echo $paciente->nombreP."&nbsp".$paciente->apellidoP; ?></div>
+</div>
+</div>
+</div>
+
+
+
+<div class ="row">
+
+ <?php echo Form::open(); ?>
+ <input type ="hidden" name ="temp" id ="temp" value="2">
+
+ <div class="col-lg-7">
+
+<br>
+
+<label>Dirección de consultorio (Opcional)</label>
+<input type="text" name ="dirCon" id="dirCon" class="form-control" placeholder="Dirección de consultorio (Opcional)" >
+
+<br>
+<label>Teléfono  Consultorio (Opcional)  </label>
+<input type="text" name ="telCon" id="telCon" class="form-control"  >
+
+<br>
+<label>Celular Consultorio () </label>
+<input type="text" name ="celCon" id="celCon" class="form-control"  >
+
+
+<br>
+<label>Fecha del certificado </label>
+<input type="date" name ="fechaCer" id="fechaCer" class="form-control"  required>
+
+
+<br>
+<label>Razón de la consulta (Espacio libre ...)</label>
+  <textarea class="form-control" rows="3" id="reason" name ="reason" placeholder ="Razón del certificado o motivo de la consulta del paciente (Pàrrafo Libre)
+
+" required></textarea>
+<hr>
+<button class="btn btn-danger" type="submit" name="Buscar">Generar Certificado</button>
+
+</div>
+
+ 
+
+ <?php echo Form::close(); ?>
+
+
+
+</div>

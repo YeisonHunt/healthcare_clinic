@@ -1,0 +1,54 @@
+<?php View::content(); ?>
+
+<?php echo Form::open() ?>
+
+<div class="row">
+
+    <div class="col-lg-3">
+
+        <div class="form-group" style="display:none;">
+            <input type="text" name="grado" id="grado" class="form-control" placeholder="Grado">
+             </div>
+            <label for="exampleSelect1">Seleccionar grado</label>
+
+            <div class="form-group">
+            <select class="form-control"  name ="grado1"id="grado1">
+            <option> Escoja el curso por favor...</option>
+                <option>Preescolar</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+            </select>
+
+        </div>
+
+
+    </div>
+
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-2">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">Generar reporte por grados
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
+        </button>
+    </div>
+    <div class="col-lg-2">
+        <div class="actions" style="padding-left:40px;">
+            <?= Html::linkAction("atras", 'Atras', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close() ?>

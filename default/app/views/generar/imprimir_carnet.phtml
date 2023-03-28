@@ -1,0 +1,149 @@
+<?php
+View::content();
+
+Load::lib('pdf/mpdf');
+
+ $css = file_get_contents('css/boot/bootstrap.css');
+
+// Aquí será el creador de html
+$listaAlumnos=$_SESSION['grupoCarnet'];
+
+$arrayH= array();
+
+for ($i=0; $i<count($listaAlumnos); $i++) { 
+
+  $arrayH[$i] = '
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <link rel=”stylesheet” type=”text/css” href=”http://fonts.googleapis.com/css?family=Roboto”>
+    <style>
+
+        * {
+
+            font-family: ‘Roboto’;
+            font-weight: normal;
+            font-style: normal;
+        }
+
+
+        .gradient1 {
+            padding-top:0px;
+            margin: 0 !important;
+            padding: 0 !important;
+
+            //  border:0.1mm solid #220044; 
+        }
+        .gradient2 {
+        }
+        h4 {
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+        }
+        div {
+            padding:1em;
+            margin-bottom: 1em;
+            text-align:justify;
+        }
+
+    </style>
+
+    <div class="gradient1" style="float: left; width: 40%; margin-bottom: 0pt; font-size:60%; position: absolute;overflow: visible; height:220px; ">
+        <h1 style="text-align: center; font-size:160%;padding-top:20px;"><b>CARNET ESTUDIANTIL</b></h1>
+        <h2 style="text-align: center;font-size:120%;">INSTITUCIÓN EDUCATIVA BELÉN</h2>
+        <h5 style="text-align: center; font-size:12px;">SEDE PRINCIPAL</h5>
+
+        <img src="http://placehold.it/100x110" style="float:center" />
+
+        <h4 style="padding-left:8px; font-size:10px;">GRADO:<b>'. $listaAlumnos[$i]->nombreGrado .'</b></h4>
+    </div>
+
+    <div class="gradient2" style="float: right; width: 54%; margin-bottom: 0pt;  font-size: 80%; position:sticky; margin-right:150px; padding-top:1px; ;padding-left:-50px; ">
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <label>Nombres : <b>'. $listaAlumnos[$i]->nombre .'</b> </label><br />
+        <label>Apellidos :<b>'.  $listaAlumnos[$i]->apellido.'</b></label><br />
+        <label>ID :<b> '.$listaAlumnos[$i]->identidadAl .'</b></label><br />
+        <label>RH :<b> '. $listaAlumnos[$i]->rh .' </b></label><br />
+        <label>Cel Acu :<b> '. $listaAlumnos[$i]->celAcu .' </b></label><br />
+        <label >DANE: 241359000160 </label><br />
+    </div>
+
+
+    <div class="gradient3" style="float: right;padding-left:350px;   width: 65%; pading-top:-30px;  margin-bottom: 0pt;margin-right:60px;  position: fixed; height:220px; ">
+
+        <table class="table">
+            <tr>
+                <th colspan="2"> Este carnet es personal e instrasferible, acreditando al titular su vinculación con esta institución. Su uso está
+                    reglamentado a términos y condiciones estipulados por la misma.</th>
+            </tr>
+            <tr>
+                <td>FECHA EXPEDICIÓN</td>
+                <td>FECHA DE VENCIMIENTO</td>
+            </tr>
+            <tr>
+                <td>'. $start .'</td>
+                <td>'. $end .'</td>
+            </tr>
+            <tr>
+                <th colspan="2" class="text-center">JORNADA COMPLETA</th>
+            </tr>
+            <tr>
+                <td>DIRECCIÓN:</td>
+                <td>'. $listaAlumnos[$i]->dir .'</td>
+            </tr>
+
+            <tr>
+                <td>LIC</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>RECTOR</td>
+                <td>'. $nombreR .'</td>
+            </tr>
+        </table>
+
+
+    </div>
+
+</html>
+
+
+
+';
+
+
+}
+
+
+$html2='<br> <br>';
+
+    $mpdf = new mPDF('c', 'A4');
+    $mpdf->WriteHTML($css, 1);
+   
+   
+for ($i=0; $i <count($listaAlumnos) ; $i++) { 
+
+    $mpdf->WriteHTML($arrayH[$i]);
+    $mpdf->WriteHTML($html2);
+
+    if(($i+1)%4==0 and $i!=0){
+
+     $mpdf->AddPage();
+    }
+
+ 
+   }
+    
+  
+    
+    $mpdf->Output('carnetGrupos.pdf', 'I');
+
+exit;
+    ?>

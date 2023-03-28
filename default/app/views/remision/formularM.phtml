@@ -1,0 +1,246 @@
+<div class="row">
+
+    <div class="col-lg-3">
+        <div class="form-group input-group">
+            <span class="input-group-btn">
+                <?php echo Form::open(); ?>
+                <h4>Nombre ó descripción</h4>
+                <input type="hidden" name="valN" id="valN" value="2">
+                <input type="text" name="nombreP" id="nombreP" class="form-control" placeholder="Introducir Nombre" required>
+                <button class="btn btn-default" type="submit" name="Buscar">
+                    <i class="fa fa-search"></i>
+                </button>
+                <?php echo Form::close(); ?>
+            </span>
+        </div>
+    </div>
+
+    <div class="col-lg-8" style="margin-left:50px;">
+
+        <table class="table" style="width:19cm;" autosize="1">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Cant</th>
+                    <th>Descripción</th>
+                    <th>F.Farmacéutica</th>
+                    <th>Posología</th>
+                    <th>Descuento (%)</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+
+
+           for($i=0; $i<count($listaAnadidos); $i++) { ?>
+                <tr>
+                    <td>
+                        <?php echo ($i+1) ?>
+                    </td>
+                    <td>
+                        <?php echo $listaAnadidos[$i]->cM ?>
+                    </td>
+                    <td>
+                        <b>
+                            <?php echo $listaAnadidos[$i]->dM ?>
+                            <b>
+                    </td>
+                    <td>
+                        <?php echo $listaAnadidos[$i]->dM ?>
+                    </td>
+                    <td>
+                        <?php echo $listaAnadidos[$i]->nM ?>
+                    </td>
+                    <td>
+                        <?php echo $listaAnadidos[$i]->descuento ?>
+                    </td>
+
+
+                    <?php 
+
+              $idM = $listaAnadidos[$i]->idM;
+
+              ?>
+
+                    <td>
+                        <i class="fa fa-fw fa-erase"></i>
+                        <?php echo Html::linkAction("delListaM/$idM", ' Eliminar de lista') ?>
+
+                    </td>
+                </tr>
+                <?php } ?>
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+</div>
+
+<hr>
+
+
+<div class="row">
+    <?php echo Form::open("remision/generarFormulaM"); ?>
+
+    <div class="col-lg-5">
+        <h4>Datos de quién entrega y quién recibe</h4>
+
+        <div class="form-group">
+            <label for="nombreF">Quién entrega (Nombres Completos)</label>
+            <input type="text" name="quienEntrega" id="quienEntrega" placeholder="Carlos Eduardo Urbano o persona calificada" class="form-control"
+                required>
+        </div>
+
+        <div class="form-group">
+            <label for="nombreF">Quién recibe (Nombres Completos)</label>
+            <input type="text" name="quienRecibe" id="quienRecibe" placeholder="Nombre paciente o acudiente" class="form-control" required>
+        </div>
+
+
+    </div>
+
+
+
+    <div class="col-lg-4">
+        <h4>_</h4>
+
+
+
+        <div class="form-group">
+            <label for="apellidoF">Fecha Remisión (mm/dd/aaaa)</label>
+            <input type="date" name="fechaM" id="fechaM" class="form-control" placeholder="Fecha Nacimiento" required>
+        </div>
+
+
+        <div class="form-group">
+            <label for="apellidoF">Tipo de Documento (REMISION ó COTIZACIÓN)</label>
+            <input type="text" name="tipo" id="tipo" class="form-control" placeholder="REMISION ó COTIZACIÓN" required>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+<div class="col-lg-1">
+    <h4>_</h4>
+    <?php if (count($listaAnadidos)<1) {
+          $style="disabled";}
+          else{
+
+            $style=NULL;
+        }
+
+
+        ?>
+
+
+
+
+    <button class="btn btn-primary" type="submit" name="Buscar" <?php echo $style;?> style="margin-top:25px;"> Generar Fórmula </button>
+
+
+</div>
+
+</div>
+
+<?php echo Form::close(); ?>
+
+<!-- /.row -->
+<hr>
+<?php View::content(); ?>
+
+
+<!-- /.row -->
+
+<br>
+
+<h4>Lista Medicamentos</h4>
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>No</th>
+                        <th>Nombre ó Descripción</th>
+                        <th>Forma Farmacéutica</th>
+                        <th>Posología</th>
+                        <th>Precio ($)</th>
+                        <th>Descuento</th>
+                        <th>Establecer cantidad </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for($i=0; $i<count($listaPacientes); $i++) { ?>
+                    <tr>
+                        <td>
+                            <?php echo $listaPacientes[$i]->idMedicamento ?>
+                        </td>
+                        <td>
+                            <b>
+                                <?php echo $listaPacientes[$i]->descripcionM ?>
+                                <b>
+                        </td>
+                        <td>
+                            <?php echo $listaPacientes[$i]->formaFarmaM ?>
+                        </td>
+                        <td>
+                            <?php echo $listaPacientes[$i]->necesidadM ?>
+                        </td>
+                        <td>
+                            <?php echo $listaPacientes[$i]->precio ?>
+                        </td>
+
+                          <td>
+                            <?php echo $listaPacientes[$i]->descuento ?>
+                        </td>
+
+                        <?php 
+
+                   $idMedicamento = $listaPacientes[$i]->idMedicamento;
+
+                   ?>
+
+                        <td>
+
+                            <?php echo Form::open("remision/guardarMedicamentos/"); ?>
+
+                            <input type="hidden" name="idMedicamento" id="idMedicamento" value="<?php echo $idMedicamento; ?>">
+
+                            <input type="number" min="1" name="cantidad" id="cantidad" placeholder="Cantidad ..." required>
+                            <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">Añadir Medicamento
+                                <!--?php echo Form::submit("Ingresar","class: boton"); ?-->
+                            </button>
+                            <?php echo Form::close(); ?>
+
+
+
+                        </td>
+                    </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->

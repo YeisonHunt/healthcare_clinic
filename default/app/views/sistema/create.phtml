@@ -1,0 +1,43 @@
+<?php View::content(); ?>
+
+<?php echo Form::open("sistema/create"); ?>
+<h4><small>Recuerde crear 1 año lectivo <b>solo</b> si <b>no</b> está en la lista, ya que un año duplicado puede causar futura redundancia de información.</small></h4>
+<div class="row">
+    
+    <div class="col-lg-3">
+        <div class="form-group">
+        
+        <label for="anioF">Introduzca el nuevo año lectivo:</label>
+            <input type="number" name="anioF" id="anioF" min ="2018" size="4" class="form-control" placeholder="Ej: 2023">
+            <input type="hidden" name="anioIdF" id="anioIdF" class="form-control" placeholder="Identificación" value ="">
+        </div>
+        <div class="form-group">
+        <label for="nombreF">Rector(a) Nombre Completo:</label>
+            <input type="text" name="rectoraF"  id="rectoraF" class="form-control" placeholder="Nombre Completo">
+        </div>
+    
+       
+    </div> <!-- Fin del formulario -->
+
+    
+
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-1">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">Agregar
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?-->
+        </button>
+    </div>
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close(); ?>

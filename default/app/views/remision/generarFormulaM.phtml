@@ -1,0 +1,238 @@
+<?php
+View::content();
+
+
+
+
+
+ $css = file_get_contents('css/boot/bootstrap.css');
+$number = rand(1,32);
+
+
+  $html = '
+<html>
+<head>
+
+
+
+<style> 
+
+
+@page { sheet-size: Letter; }
+
+
+#example1 {
+    background-image: url(img/medicamentos.png);;
+    background-position: right bottom, left top;
+    background-repeat: no-repeat, repeat;
+    width:818px;
+    height:200px;
+    margin-left:40px;
+    padding-top:30px;
+    
+}
+
+td {
+
+
+  padding:2px;
+}
+
+
+</style>
+
+
+</head>
+<body>
+
+<div id="example1">
+
+
+<div id="nombre" style="margin-left:280px; padding-top:36px;">
+<h5>NATURPRODUCTOS BIOLÓGICOS PLUSS</h5>
+</div>
+
+
+<div id="nombre" style="margin-left:280px; padding-top:5px;">
+<h5>'.$tipo.'</h5>
+</div>
+
+<div id="nombre" style="margin-left:280px; padding-top:0px;">
+<h6>Fecha(año/mes/dia):'.$date.'</h6>
+</div>
+
+<div id="xdd" style="margin-left:280px; padding-top:10px;">
+<h6>DATOS CLIENTE</h6>
+</div>
+
+<div id="nombre" style="margin-left:280px; padding-top:10px;">
+<h6>Nombres:'.$paciente->nombreP.'</h6>
+</div>
+
+<div id="nombre" style="margin-left:280px; padding-top:1px;">
+<h6>Apellidos:'.$paciente->apellidoP.'</h6>
+</div>
+
+<div id="apellido" style="margin-left:280px; padding-top:1px;">
+<h6>Dirección:'.$paciente->dirP.'</h6>
+</div>
+
+<div id="apellido" style="padding-right:680px; padding-top:-100px;">
+<img src="img/medicine.png"  style="width:200px; height:200px;">
+</div>
+
+
+
+
+
+</div>
+<hr style ="margin-left:30px;">
+<br>
+
+<div id="medicamentos" style="margin-left:40px; padding-top:1px; padding-bottom:105px;   ">
+
+<table class="table" style="width:19cm;  "  autosize="1">
+  <thead>
+    <tr>
+      <th>Nombre Producto</th>
+      <th>Cantidad</th>
+      <th style="text-align: center;" >Valor Unitario</th>
+      <th>Des(%)</th>
+      <th>Con descuento</th>
+      <th>Valor Total</th>
+    </tr>
+  </thead>
+  <tbody>';
+
+  $listaAnadidos=$_SESSION['listaAnadidos'];
+$total = array();
+for ($i=0; $i <count($listaAnadidos) ; $i++) { 
+
+$v = $listaAnadidos[$i]->valorUni;
+$c = $listaAnadidos[$i]->cM;
+$d = $listaAnadidos[$i]->descuento;
+$total[$i] = (intval($v) -floatval(($v*$d)/100))*$c;
+
+ $html.='<tr><td> '.$listaAnadidos[$i]->dM.'</td>';
+ $html.='<td style="text-align: center;">'.$listaAnadidos[$i]->cM .'</td>';
+ $html.='<td style="text-align: center;">'.$listaAnadidos[$i]->valorUni .'</td>';
+ $html.='<td style="text-align: center;" >'.$listaAnadidos[$i]->descuento .'</td>';
+
+ $precioFinal = intval($v) -floatval(($v*$d)/100); 
+ $html.='<td style="text-align: center;" >'.$precioFinal .'</td>';
+ $html.='<td>'. number_format($total[$i]).'</td></tr>';
+ 
+  
+ 
+}
+
+$html.='
+
+<tr><td></td><td></td><td></td><td></td><td> TOTAL A PAGAR : </td><td>'. number_format(array_sum($total)).'</td></tr>';
+
+
+
+
+   
+  $html.='</tbody>
+</table>
+
+
+</div>
+
+
+
+</div>
+
+    <br /><br /><br />
+
+<!-- /. Firmas -->
+
+  <div style="width:100%;">
+    <div style="width:50%;float:left;margin-left:30px;">_____________________________________</div>
+    <div style="width:50%;text-align:right;margin-left:-60px !important;padding-left:-30px !important; ">_______________________________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+  </div>
+
+   <div style="width:100%;">
+    <div style="width:50%;float:left;margin-left:30px;">'.$quienEntrega.'</div>
+    <div style="width:50%;text-align:right;margin-left:-60px !important;padding-left:-30px !important;">'.$quienRecibe.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+  </div>
+
+ <div style="width:100%;">
+    <div style="width:50%;float:left;margin-left:30px;">Persona responsable de entrega</div>
+    <div style="width:50%;text-align:right;margin-left:-60px !important;padding-left:-30px !important;">Paciente o persona responsable de este&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+  </div>
+<br><br><br>
+</body>
+</html>
+';
+
+
+$html.='
+    
+
+';
+
+
+
+
+$html2='<br> <br>';
+ $servername = "localhost";
+         $username = "root";
+         $password = "";
+         $dbname = "clinic";
+
+
+         $conn = new mysqli($servername, $username, $password, $dbname);
+         $conn->set_charset("utf8");
+
+         if ($conn->connect_error) {
+            die("Falló la conexión a Clinic. Revise por favor que tenga  Xampp corriendo en su equipo.: " . $conn->connect_error);
+        }
+
+        //PENDIENTE POR CONFIGURAR COMO MEJOR SE VEA.
+
+
+
+        $sql = "DELETE from mtemporal ";
+
+        if ($conn->query($sql) === TRUE) {
+
+
+        } else {
+            echo " " . $conn->error;
+
+            Flash::error('No se pudo añadir el medicamento a la fórmula.');
+        }
+
+        $conn->close();
+
+Load::lib('pdf/mpdf');
+
+   //   $mpdf = new mPDF('utf-8', array(896,477));
+
+ $mpdf = new mPDF('c','', 0, '', '0', '0', '0', '0', '0', '0', 'Letter');
+ //$mpdf = new mPDF('utf-8', 'Letter-L');
+
+
+    $html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
+    $html2 = mb_convert_encoding($html2, 'UTF-8', 'UTF-8');
+    $mpdf->WriteHTML($css, 1);
+   
+
+
+    $mpdf->WriteHTML($html);
+   
+
+  
+   $string = 'formulaMedicamentos'.$paciente->nombreP.$paciente->apellidoP.$date.'.pdf';
+  
+  
+    
+    $mpdf->Output($string, 'I');
+
+exit;
+
+ 
+// añadir vaciar tabla mysql codigo 
+    ?>

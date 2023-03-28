@@ -1,0 +1,74 @@
+<?php View::content();  // Profesores Terminado?>
+
+<div class="row">
+    <div class="col-lg-2">
+        <div class="actions">
+            <?= Html::linkAction("create/", 'Crear nuevo profesor', 'class="btn btn-primary"') ?>
+        </div>
+    </div>
+
+    <div class="col-lg-2">
+        <div class="actions">
+            <?= Html::linkAction("buscar/", 'Buscar profesor', 'class="btn btn-info"') ?>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-2">
+        <?php if ($listaProfesores->prev) echo Html::linkAction("index/$listaProfesores->prev/", '<< Anterior'); ?>
+    </div>
+    <div class="col-lg-2">
+        <?php if ($listaProfesores->next) echo Html::linkAction("index/$listaProfesores->next/", 'Próximo >>'); ?>
+    </div>
+</div>
+<!-- /.row -->
+
+<br>
+
+<h4>Lista de Profesores Actuales</h4>
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Estado</th>
+                        <th>Cédula</th>
+                        
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($listaProfesores->items as $item) : ?>
+                        <tr>
+                            <td><?php echo $item->idPro ?></td>
+                            <td><?php echo $item->nombrePro ?></td>
+                            <td><?php echo $item->apellidoPro ?></td>
+                            <td><?php echo $item->estadoPro ?></td>
+                            <td><?php echo $item->identidadPro ?></td>
+                            
+                            <td>
+                                <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("edit/$item->idPro/", ' Editar') ?>
+                               
+                                <?php if(isset($resultado)) { ?>
+                                    <i class="fa fa-fw fa-eraser"></i><?php echo Html::linkAction("del/$item->idPro/", ' ver') ?>
+                                <?php } ?>
+                            </td>  
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->

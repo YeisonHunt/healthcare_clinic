@@ -1,0 +1,161 @@
+<?php View::content();  // Profesores Terminado?>
+
+<div class="row">
+
+
+    <div class="col-lg-2" >
+        <div class="actions">
+            <?= Html::linkAction("buscar/", 'Buscar pacientes', 'class="btn btn-primary"') ?>
+        </div>
+    </div>
+
+
+    <div class="col-lg-2" >
+        <div class="actions">
+            <?= Html::linkAction("crearHistoria/$paciente->idPaciente", 'Añadir historia a paciente actual', 'class="btn btn-warning"') ?>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
+<hr>
+
+<?php echo Form::open("historiaclinica/verTodas"); ?>
+
+<!-- /.row -->
+<div class="row">
+
+    <div class="col-lg-3">     
+       <h4>Lista Últimas Historias Clinicas....<br>
+           
+       </h4>
+   </div>
+
+   <div class="col-lg-3">  
+    <div class="form-group">
+      <label for="asd">Fecha Inicio:</label>
+       <input type="hidden" value="3" id="prueba" name ="prueba">
+      <input type="date" class="form-control" id="fecha1" name ="fecha1" min="2000-01-02" value ="<?php echo $f1;?>">
+  </div>
+</div>
+
+
+<div class="col-lg-3">  
+    <div class="form-group">
+      <label for="asdd">Fecha Final:</label>
+      <input type="date" class="form-control" id="fecha2" name ="fecha2" min="2000-01-02" value ="<?php echo $f2;?>">
+  </div>
+</div>
+
+<div class="col-lg-2" style="padding-top:5px;">
+    <label for="pwd"></label>
+    <button class="btn btn-primary waves-effect waves-light" type="submit" name="Ingresar">Buscar entre fechas
+        <!--?php echo Form::submit("Ingresar","class: boton"); ?--> 
+    </button>
+</div>
+
+</div> <!-- End class row -->
+
+
+<?php echo Form::close(); ?>
+
+<hr>
+
+
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>No</th>
+
+                        <th>Fecha</th>
+                        <th>Motivo</th>
+                        <th>Sistólica</th>
+                        <th>Diastólica</th>
+                        <th>Cardiaca</th>
+                        <th>Respiratoria</th>
+                        <th>Paciente</th>
+
+                        <th>Acciones</th>
+                        <th>Crear Historia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for($i=0; $i<count($listaClinicas); $i++) { ?>
+                    <tr>
+                     <td><?php echo $listaClinicas[$i]->idHistoriaClinica ?></td>
+
+                     <td><?php echo $listaClinicas[$i]->fecha ?></td>
+                     
+
+                     <td><b><?php echo $listaClinicas[$i]->motivoH ?><b></td>
+                     <td><?php echo $listaClinicas[$i]->preSistolica ?></td>
+                     <td><?php echo $listaClinicas[$i]->preDistolica ?></td>
+                     <td><?php echo $listaClinicas[$i]->frecCardiaca ?></td>
+
+                     <td><?php echo $listaClinicas[$i]->frecRespiratoria ?></td>
+
+
+                     <td><?php echo $listaClinicas[$i]->nombreP; echo "&nbsp;"; echo $listaClinicas[$i]->apellidoP; ?></td>
+
+
+
+
+                     <?php  $idPaciente = $listaClinicas[$i]->idPaciente; ?>
+                     <?php  $idHistoria = $listaClinicas[$i]->idHistoriaClinica; ?>
+
+
+
+                     <td>
+                        <i class="fa fa-fw fa-cog"></i><?php echo Html::linkAction("edit/$idHistoria/$idPaciente", ' Editar Historia') ?>
+                        <?php echo "<br>"; ?>
+
+                        <?php 
+                         if ($f1==null and $f2==null) {
+                             $f1=1;
+                             $f2=1;
+                         }
+                        ?>
+
+                        <i class="fa fa-fw fa-download"></i><?php echo Html::linkAction("imprimirHistorias/$f1/$f2/$idPaciente", ' Descargar Historia Completa (PDF)') ?>
+
+                    </td>  
+
+                    <td>
+
+
+                     <i class="fa fa-fw fa-clipboard"></i><?php echo Html::linkAction("crearHistoria/$idPaciente", ' Crear Para paciente actual') ?>
+
+                 </td>  
+
+             </tr>
+             <?php } ?>
+         </tbody>
+     </table>
+ </div>
+</div>
+
+</div>
+<!-- /.row -->
+
+
+<hr>
+
+<div class="row">
+
+
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>

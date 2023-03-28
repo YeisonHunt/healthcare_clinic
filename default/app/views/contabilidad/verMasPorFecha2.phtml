@@ -1,0 +1,151 @@
+<?php View::content();  // Profesores Terminado ?>
+
+<div class="row">
+
+    <div class="col-lg-5">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Fecha Seleccionada: Formato(Año-Mes-Día) </div>
+            <div class="panel-body"><b><?php echo $fechaSeleccionada; ?></b></div>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<!-- /.row -->
+
+<hr>
+
+<!-- /.row -->
+
+<h4>Listando los registros asociados a la fecha anterior</h4>
+<hr>
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>#</th>
+                        <th>Fecha (Año-Mes-Día)</th>
+                        <th>Concepto</th>
+                        <th>Valor ($)</th>
+                        <th>Tipo</th>
+                        <th>Acciones</th>
+                       
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for($i=0; $i<count($listaCreditos); $i++) {
+                        
+                        if($listaCreditos[$i]->tipoIngEgre=='Entrada'){
+                            $class="success";
+                        }else{
+
+                            $class="warning";
+                        }
+                         ?>
+                    <tr>
+                     <td class="<?php echo $class; ?>"><?php echo $listaCreditos[$i]->id ?></td>
+                     <td class="<?php echo $class; ?>"><b><?php echo $listaCreditos[$i]->fecha ?><b></td>
+                     <td class="<?php echo $class; ?>"><?php echo $listaCreditos[$i]->concepto ?></td>
+                     <td class="<?php echo $class; ?>"><?php echo number_format( $listaCreditos[$i]->monto) ?></td>
+                     <td class="<?php echo $class; ?>"><?php echo $listaCreditos[$i]->tipoIngEgre ?></td>
+                    
+                     <?php 
+
+                         $id = $listaCreditos[$i]->id;
+                      ?>
+
+                    </td> 
+ 
+                    <td> 
+                      
+                     
+     
+                     <i class="fa fa-fw fa-edit"></i><?php   echo Html::linkAction("edit/$id", 'Editar este registro');
+
+            ?>
+
+                   
+
+
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+<!-- /.row -->
+<hr>
+
+<h4>Saldos...
+</h4>
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>#</th>
+                        <th>Fecha (Año-Mes-Día)</th>
+                        <th>Valor ($)</th>
+                        
+                        
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for($i=0; $i<count($listaSaldos); $i++) {
+                        
+                        if($listaSaldos[$i]->monto>0){
+                            $class="success";
+                        }else{
+
+                            $class="warning";
+                        }
+                        if($i==0){$to = "  (Hoy)";}
+                        else{$to = "";}
+                        
+
+
+                         ?>
+                    <tr>
+                     <td class="<?php echo $class; ?>"><?php echo $listaSaldos[$i]->id ?></td>
+                     <td class="<?php echo $class; ?>"><b><?php echo $listaSaldos[$i]->fecha. $to?><b></td>
+                  <td class="<?php echo $class; ?>"><?php echo number_format( $listaSaldos[$i]->monto) ?></td>
+                     
+                    
+                     <?php 
+
+                         $id = $listaSaldos[$i]->id;
+                      ?>
+
+                    </td> 
+ 
+                  
+
+                   
+
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+<!-- /.row -->
+<div class="row">
+
+  <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+</div>

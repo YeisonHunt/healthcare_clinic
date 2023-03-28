@@ -1,0 +1,79 @@
+<?php View::content(); ?>
+
+<div class="row">
+<div class="col-md-5">
+
+    <div class="col-lg-4">
+
+        <div class="form-group input-group">
+            <span class="input-group-btn">
+                <?php echo Form::open(); ?>
+               <h4>Nombre o parte del <b>nombre</b> de la materia</h4>
+                <input type="text" name="nombresF" id ="nombresF" class="form-control" placeholder="Nombre o parte del nombre" required>
+                <button class="btn btn-default" type="submit" name="Buscar"><i class="fa fa-search"></i></button>
+                <?php echo Form::close(); ?>
+            </span>
+        </div>
+
+    </div>
+    </div>
+
+
+</div>
+
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">     
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                        <th>Número</th>
+                        <th>ID</th>
+                        <th>Nombre Materia</th>
+                        <th>Grado</th>
+                        <th>Nombre P.A</th>
+                        <th>Apellido P.A</th>
+                        <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                         <?php for($i=0; $i<count($listaMaterias); $i++) { ?>
+                            <tr>
+                                <td><?php echo $i ?></td>    
+                                <td><?php echo $listaMaterias[$i]->idMateria ?></td>
+                                <td><?php echo $listaMaterias[$i]->nombreMateria ?></td>
+                                <td><?php echo $listaMaterias[$i]->gradoMateria ?></td>
+                                <td><?php echo $listaMaterias[$i]->nombrePro ?></td>
+                                <td><?php echo $listaMaterias[$i]->apellidoPro ?></td>
+                             
+                                <td>
+                                   <?php $idM = $listaMaterias[$i]->idMateria?>
+                         <?php $n = $listaMaterias[$i]->nombrePro?>
+
+                          <?php $a = $listaMaterias[$i]->apellidoPro?>
+                                <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("edit/$idM/$n/$a", ' Cambiar Profesor') ?>
+                                    
+                                </td>
+                            </tr>
+                             <?php } ?>
+                        </tbody>
+                    </table>
+                     
+            
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->

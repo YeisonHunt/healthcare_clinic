@@ -1,0 +1,498 @@
+<?php
+
+View::content();
+Load::lib('pdf/mpdf');
+
+$css = file_get_contents('css/sbadmin/bootstrap.css');
+
+//for ($i=0; $i<count($listaAlumnos); $i++) { 
+
+$html = '<div class="row text-center">
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center">PLANILLA POR PERIODOS</th>
+                </tr>
+            </thead>
+            </table>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">INSTITUCIÓN EDUCATIVA BELÉN</th>
+                        <th class="text-center">AÑO ESCOLAR '.$periodo->anio_idAnio.'</th>
+                        <th class="text-center">GRADO :'.$gradoF->nombreGrado.'</th>
+                        
+                        <th class="text-center">PERIODO:'. $periodo->numeroPeriodo .' </th>
+                    </tr>
+                </thead>
+             </table>
+             <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th  class="middle text-center">#</th>
+                        <th  class="text-center"><small>NOMBRES</small></th>
+                        <th  class="text-center"><small>APELLIDOS</small></th>
+                        <th  class="text-center"><small>ID</small></th>
+
+                        <th  colspan ="3" class="text-center"><small>PROYECTO</small></th>
+                        <th colspan ="3" class="text-center"><small>MATEMÁTICAS</small></th>
+                        <th  colspan ="3" class="text-center"><small>ESPAÑOL</small></th>
+                        <th  colspan ="3" class="text-center"><small>QUÍMICA</small></th>
+                        <th  colspan ="3" class="text-center"><small>INGLÉS</small></th>
+                        <th  colspan ="3" class="text-center"><small>EDUCACIÓN FÍSICA</small></th>
+                        <th  colspan ="3" class="text-center"><small>FILOSOFÍA</small></th>
+                        <th colspan ="3" class="text-center"><small>ARTÍSTICA</small></th>
+                        <th colspan ="3" class="text-center"><small>ÉTICA</small></th>
+                        <th colspan ="3" class="text-center"><small>ECONOMÍA</small></th>
+                        <th colspan ="3" class="text-center"><small>FÍSICA</small></th>
+                        <th colspan ="3" class="text-center"><small>RELIGIÓN</small></th>
+                         <th colspan ="3" class="text-center"><small>INFORMÁTICA</small></th>
+                        <th colspan ="2" class="text-center"><small>VALORACIÓN</small></th>
+                    </tr>
+
+                    <tr>
+                        <th  colspan="4" class="text-center"></th>
+                       
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                         <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                         <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                          <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                         <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">N</th>
+                        <th class="text-center">E</th>
+                        <th class="text-center">F</th>
+
+                        <th class="text-center">PM</th>
+                        <th class="text-center">PSTO</th>
+                       
+         
+                    </tr>
+                </thead>
+
+                <tbody>  ';
+// AQUÍ VA LA MATERIA MATEMATICAS
+   $arrayP= array();
+   $arrayF= array();
+   $arrayZ= array();
+
+   for ($i=0; $i <$cuenta->cuenta ; $i++) { 
+    $arrayZ[$i]=$i+1;
+}
+                
+for ($i=0; $i <$cuenta->cuenta ; $i++) { 
+    $html.=' <tr><td class="text-center">'.$i.'</td> ';
+
+    $nF = round($listaNotasP[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaP="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaP="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaP="A"; 
+    }else{
+
+      $escalaP="S"; 
+    }
+
+     $nF = round($listaNotasM[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaM="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaM="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaM="A"; 
+    }else{
+
+      $escalaM="S"; 
+    }
+
+    ////////////////
+
+      $nF = round($listaNotasE[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaE="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaE="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaE="A"; 
+    }else{
+
+      $escalaE="S"; 
+    }
+
+////////////// 
+    $nF = round($listaNotasQ[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaQ="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaQ="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaQ="A"; 
+    }else{
+
+      $escalaQ="S"; 
+    }
+
+    ////////////// 
+    $nF = round($listaNotasI[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaI="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaI="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaI="A"; 
+    }else{
+
+      $escalaI="S"; 
+    }
+
+    ////////////// 
+    $nF = round($listaNotasEF[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaEF="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaEF="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaEF="A"; 
+    }else{
+
+      $escalaEF="S"; 
+    }
+
+    ////////////// 
+    $nF = round($listaNotasFilo[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaFilo="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaFilo="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaFilo="A"; 
+    }else{
+
+      $escalaFilo="S"; 
+    }
+
+      ////////////// 
+    $nF = round($listaNotasA[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaA="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaA="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaA="A"; 
+    }else{
+
+      $escalaA="S"; 
+    }
+
+      ////////////// 
+    $nF = round($listaNotasEti[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaEti="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaEti="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaEti="A"; 
+    }else{
+
+      $escalaEti="S"; 
+    }
+       ////////////// 
+    $nF = round($listaNotasEco[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaEco="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaEco="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaEco="A"; 
+    }else{
+
+      $escalaEco="S"; 
+    }
+
+   ////////////// 
+    $nF = round($listaNotasFi[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaFi="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaFi="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaFi="A"; 
+    }else{
+
+      $escalaFi="S"; 
+    }
+
+   ////////////// 
+    $nF = round($listaNotasR[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaR="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaR="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaR="A"; 
+    }else{
+
+      $escalaR="S"; 
+    }
+
+   ////////////// 
+    $nF = round($listaNotasIn[$i]->notaFinal,2);
+    if($nF>=0 and $nF <=2.9){
+
+        $escalaIn="B-";
+    }elseif($nF>2.9 and $nF <=3.8){
+
+       $escalaIn="B+"; 
+    }
+    elseif($nF>3.9 and $nF <=4.5){
+
+       $escalaIn="A"; 
+    }else{
+
+      $escalaIn="S"; 
+    }
+
+
+// Pendiente por cambiar.. Seguir el ritmo, P,M...
+
+
+$html.=' <td class="text-center">'.$listaNotasM[$i]->nombre.'</td> ';
+$html.=' <td class="text-center">'.$listaNotasM[$i]->apellido.'</td> ';
+$html.=' <td class="text-center">'.$listaNotasM[$i]->identidadAl.'</td> '; 
+
+$html.=' <td class="text-center">'.round($listaNotasP[$i]->notaFinal,2).'</td> '; 
+$html.=' <td class="text-center">'.$escalaP .'</td> '; 
+$html.=' <td class="text-center">'.$listaNotasP[$i]->faltas.'</td> '; 
+
+$html.=' <td class="text-center">'.round($listaNotasM[$i]->notaFinal,2).'</td> '; 
+$html.=' <td class="text-center">'.$escalaM .'</td> '; 
+$html.=' <td class="text-center">'.$listaNotasM[$i]->faltas.'</td> '; 
+
+$html.=' <td class="text-center">'.round($listaNotasE[$i]->notaFinal,2).'</td> '; 
+$html.=' <td class="text-center">'.$escalaE .'</td> '; 
+$html.=' <td class="text-center">'.$listaNotasE[$i]->faltas.'</td> '; 
+
+$html.=' <td class="text-center">'.round($listaNotasQ[$i]->notaFinal,2).'</td> '; 
+$html.=' <td class="text-center">'.$escalaQ .'</td> '; 
+$html.=' <td class="text-center">'.$listaNotasQ[$i]->faltas.'</td> '; 
+
+$html.=' <td class="text-center">'.round($listaNotasI[$i]->notaFinal,2).'</td> '; 
+$html.=' <td class="text-center">'.$escalaI .'</td> '; 
+$html.=' <td class="text-center">'.$listaNotasI[$i]->faltas.'</td> '; 
+
+
+
+$html.=' <td class="text-center">'.round($listaNotasEF[$i]->notaFinal,2).'</td> '; 
+$html.=' <td class="text-center">'.$escalaEF .'</td> '; 
+$html.=' <td class="text-center">'.$listaNotasEF[$i]->faltas.'</td> '; 
+
+$html.=' <td class="text-center">'.round($listaNotasFilo[$i]->notaFinal,2).'</td> '; 
+$html.=' <td class="text-center">'.$escalaFilo .'</td> '; 
+$html.=' <td class="text-center">'.$listaNotasFilo[$i]->faltas.'</td>'; 
+
+$html.=' <td class="text-center">'.round($listaNotasA[$i]->notaFinal,2).'</td> '; 
+$html.=' <td class="text-center">'.$escalaA.'</td> '; 
+$html.=' <td class="text-center">'.$listaNotasA[$i]->faltas.'</td>'; 
+ 
+$html.=' <td class="text-center">'.round($listaNotasEti[$i]->notaFinal,2).'</td> '; 
+$html.=' <td class="text-center">'.$escalaEti .'</td> '; 
+$html.=' <td class="text-center">'.$listaNotasEti[$i]->faltas.'</td>'; 
+
+$html.=' <td class="text-center">'.round($listaNotasEco[$i]->notaFinal,2).'</td> '; 
+$html.=' <td class="text-center">'.$escalaEco.'</td> '; 
+$html.=' <td class="text-center">'.$listaNotasEco[$i]->faltas.'</td>'; 
+ 
+$html.=' <td class="text-center">'.round($listaNotasFi[$i]->notaFinal,2).'</td> '; 
+$html.=' <td class="text-center">'.$escalaFi .'</td> '; 
+$html.=' <td class="text-center">'.$listaNotasFi[$i]->faltas.'</td>'; 
+
+$html.=' <td class="text-center">'.round($listaNotasR[$i]->notaFinal,2).'</td> '; 
+$html.=' <td class="text-center">'.$escalaR.'</td> '; 
+$html.=' <td class="text-center">'.$listaNotasR[$i]->faltas.'</td>'; 
+ 
+$html.=' <td class="text-center">'.round($listaNotasIn[$i]->notaFinal,2).'</td> '; 
+$html.=' <td class="text-center">'.$escalaIn .'</td> '; 
+$html.=' <td class="text-center">'.$listaNotasIn[$i]->faltas.'</td>';
+
+
+// Código para calcular promedio
+
+$promedioP = $listaNotasP[$i]->notaFinal+$listaNotasM[$i]->notaFinal+
+$listaNotasE[$i]->notaFinal+$listaNotasQ[$i]->notaFinal+$listaNotasI[$i]->notaFinal+
+$listaNotasEF[$i]->notaFinal+$listaNotasFilo[$i]->notaFinal+$listaNotasA[$i]->notaFinal+
+$listaNotasEti[$i]->notaFinal+$listaNotasEco[$i]->notaFinal+$listaNotasFi[$i]->notaFinal+
+$listaNotasR[$i]->notaFinal+$listaNotasIn[$i]->notaFinal;
+
+
+
+
+
+
+$promedioF=$promedioP/13;
+
+
+
+$html.=' <td class="text-center">'.round($promedioF,2) .'</td> '; 
+ $html.=' <td class="text-center">'.$arrayZ[$i].'</td></tr>';
+} 
+
+// Aquí va la materia LENGUA CASTELLANA
+
+
+
+               
+
+
+                $html.='
+                    
+
+                </tbody>
+            </table>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">S = SUPERIOR</th>
+                        <th class="text-center">A = ALTO</th>
+                        <th class="text-center">B+ = BÁSICO</th>
+                        <th class="text-center">B- = BAJO</th>
+                    </tr>
+
+
+                </thead>
+             </table>
+             
+               </table>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="text-center">N= NOTA FINAL</th>
+                        <th class="text-center">E = ESCALA NACIONAL</th>
+                        <th class="text-center">F = FALTAS</th>
+                        <th class="text-center">PM = PROMEDIO </th>
+                    </tr>
+
+
+                </thead>
+             </table>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<!-- /. Firmas -->
+<div class="row text-center">
+    <div class="col-lg-12">
+        ________________________________
+        <b> <br /> '. $anio2->anioRectora .'<br />Rector(a)</b>
+    </div>
+</div>
+
+<br />';
+
+//}
+
+    $mpdf = new mPDF('c', 'A4-L');
+
+    $mpdf->WriteHTML($css, 1);
+    $mpdf->WriteHTML($html);
+    $mpdf->Output('planilla.pdf', 'I');
+
+?>
+
+

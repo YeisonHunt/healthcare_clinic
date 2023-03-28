@@ -1,0 +1,103 @@
+<?php View::content(); ?>
+
+<?php echo Form::open(); ?>
+
+<h4>Información del medicamento </h4>
+<hr>
+
+<div class="row">
+
+    <div class="col-lg-3">
+        <div class="form-group">
+            <label for="idProF">Nombre ó Descripción</label>
+
+            <textarea name="descripcionM" id="descripcionM" rows="2" class="form-control" ><?php echo $medicamento->descripcionM; ?></textarea> 
+            
+            <input type="hidden" name="idMedicamento" id="idMedicamento" class="form-control" 
+              value ="<?php echo $medicamento->idMedicamento; ?>" >
+      
+        </div>
+    </div>
+    </div>
+    <div class="row">
+ 
+
+    <div class="col-lg-3">
+        <div class="form-group">
+            <label for="nombreF">Forma Farmacéutica</label>
+            <input type="text" name="formaFarmaM"  id="formaFarmaM" class="form-control"  
+            value ="<?php echo $medicamento->formaFarmaM; ?>" required>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+
+    <div class="col-lg-3">
+
+     
+        <div class="form-group">
+            <label for="apellidoF">Posología  </label>
+            <textarea name="necesidadM" rows="2" class="form-control" placeholder="Posología"  id="necesidadM" placeholder ="Posología"><?php echo $medicamento->necesidadM;?></textarea>   
+                
+           
+        </div>
+    </div>
+    </div>
+
+<div class="row">
+
+    <div class="col-lg-3">
+
+        <div class="form-group">
+            <label for="celularF">Precio  ($) </label>
+            <input type="number" name="precio" id="precio" class="form-control"
+            value ="<?php echo $medicamento->precio; ?>"   required>
+        </div>
+    </div>
+
+   
+
+</div>
+
+<div class="row">
+<div class="col-lg-3">
+        <div class="form-group">
+            <label for="celularF">Descuento  (0  - 100)% </label>
+            <input type="number" min="0" max ="100" step="1" name="descuento" id="descuento" class="form-control"
+            value ="<?php echo $medicamento->descuento; ?>"   required>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- SEGUNDA COLUMMNA -->
+
+
+
+
+
+<!-- /.row -->
+
+<hr>
+
+
+
+
+<div class="row">
+
+    <div class="col-lg-2">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">Actualizar Medicamento
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?-->
+        </button>
+    </div>
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close(); ?>

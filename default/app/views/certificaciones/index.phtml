@@ -1,0 +1,144 @@
+<?php View::content(); ?>
+
+
+<div class="row">
+
+    <div class="col-lg-3">
+        <div class="form-group input-group">
+            <span class="input-group-btn">
+                <?php echo Form::open(); ?>
+               <h4>Nombre</h4>
+                <input type="hidden" name="valN" id ="valN" value="2">
+                <input type="text" name="nombreP" id ="nombreP" class="form-control" placeholder="Introducir Nombre" required>
+                <button class="btn btn-default" type="submit" name="Buscar"><i class="fa fa-search"></i></button>
+                <?php echo Form::close(); ?>
+            </span>
+        </div>
+    </div>
+
+
+
+     <div class="col-lg-3" style ="margin-left:30px;">
+        <div class="form-group input-group">
+            <span class="input-group-btn">
+                <?php echo Form::open(); ?>
+               <h4>Apellido</h4>
+                <input type="hidden" name="valA" id ="valA" value="2">
+                <input type="text" name="apellidoP" id ="apellidoP" class="form-control" placeholder="Introducir Apellido" required>
+                <button class="btn btn-default" type="submit" name="Buscar"><i class="fa fa-search"></i></button>
+                <?php echo Form::close(); ?>
+            </span>
+        </div>
+    </div>
+
+
+
+     <div class="col-lg-3" style ="margin-left:30px;">
+        <div class="form-group input-group">
+            <span class="input-group-btn">
+                <?php echo Form::open(); ?>
+               <h4>Cédula </h4>
+                <input type="hidden" name="valI" id ="valI" value="2">
+                <input type="text" name="cedulaP" id ="cedulaP" class="form-control" placeholder="Introducir Cédula" required>
+                <button class="btn btn-default" type="submit" name="Buscar"><i class="fa fa-search"></i></button>
+                <?php echo Form::close(); ?>
+            </span>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- /.row -->
+
+
+        <!-- /.row -->
+
+        <br>
+
+        <h4>Lista Pacientes</h4>
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <th>Cédula/TI</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                            
+                                <th>Profesión</th>
+                                <th>Edad</th>
+                                <th>Peso (Kg)</th>
+                                <th>Estatura</th>
+                               
+                                <th>RH</th>
+                                <th>S</th>
+                                <th>Alérgias</th>
+                                <th>Certificado Normal</th>
+                                 <th>Certificado Laboral</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php for($i=0; $i<count($listaPacientes); $i++) { ?>
+                                    <tr>
+                                        <td><?php echo $listaPacientes[$i]->cedulaP ?></td>
+                                        <td><?php echo $listaPacientes[$i]->nombreP ?></td>
+                                        <td><?php echo $listaPacientes[$i]->apellidoP ?></td>
+                                   
+                                       
+
+                                        <td><b><?php echo $listaPacientes[$i]->profesion ?></b></td>
+                                        
+
+                                        <td><?php echo $listaPacientes[$i]->age ?></td>
+
+                                        <td><?php echo $listaPacientes[$i]->peso ?></td>
+                                        
+
+                                        <td><?php echo $listaPacientes[$i]->estaturaP ?></td>
+
+                                        <td><?php echo $listaPacientes[$i]->rhP ?></td>
+
+                                        <td><?php echo $listaPacientes[$i]->genero ?></td>
+
+                                        <td><?php echo $listaPacientes[$i]->alergias ?></td>
+                                  
+                                        <?php 
+
+                                         $idPaciente = $listaPacientes[$i]->idPaciente;
+                                         //verificar si se envia
+
+                                        ?>
+                                          <td>
+                                        <i class="fa fa-hospital-o"></i><?php echo Html::linkAction("nuevoCertificado/$idPaciente", ' Certificado Normal') ?>
+                                        </td>
+
+                                         <td>
+                                        <i class="fa fa-hospital-o"></i><?php echo Html::linkAction("nuevoLaboral/$idPaciente", ' Certificado Laboral') ?>
+                                        </td>
+
+                                      
+                                    </tr>
+                                  <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.row -->
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->

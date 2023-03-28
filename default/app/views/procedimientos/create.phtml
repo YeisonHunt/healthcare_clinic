@@ -1,0 +1,57 @@
+<?php View::content(); ?>
+
+<?php echo Form::open("procedimientos/create"); ?>
+
+<div class="row">
+
+    <div class="col-lg-3">
+        <div class="form-group">
+        <label for="idProF">Identificación (CC)</label>
+            <input type="number" name="idF" id="idF" class="form-control" placeholder="Identificación">
+            <input type="hidden" name="idProF" id="idProF" class="form-control" placeholder="Identificación" value ="">
+        </div>
+        <div class="form-group">
+        <label for="nombreF">Nombres</label>
+            <input type="text" name="nombreF"  id="nombreF" class="form-control" placeholder="Nombres">
+        </div>
+        <div class="form-group">
+        <label for="apellidoF">Apellidos </label>
+            <input type="text" name="apellidoF"  id="apellidoF" class="form-control" placeholder="Apellidos">
+        </div>
+
+
+        <div class="form-group">
+            <select class="form-control"  name ="estadoF"id="estadoF" >
+             <optgroup label="Estado">
+                <option>Activo</option>
+                <option>Inactivo</option>
+                
+                </optgroup>
+              
+            </select>
+
+        </div>
+    </div>
+
+    
+
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-1">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">Agregar
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?-->
+        </button>
+    </div>
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close(); ?>

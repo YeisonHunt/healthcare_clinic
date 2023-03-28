@@ -1,0 +1,82 @@
+<?php View::content(); ?>
+
+<div class="row">
+    <div class="col-lg-3">
+        <div class="form-group input-group">
+            <span class="input-group-btn">
+                <?php echo Form::open(); ?>
+               <h4>Ingrese parte del título del procedimiento</h4>
+                <input type="text" name="nombreProF" id ="nombreProF" class="form-control" placeholder="Introducir parámetro" required>
+                <button class="btn btn-default" type="submit" name="Buscar"><i class="fa fa-search"></i></button>
+                <?php echo Form::close(); ?>
+            </span>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">     
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                        <th>#</th>
+                        <th>Título</th>
+                        <th>Medicamentos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                       
+                         <?php for($i=0; $i<count($listaProcedimientosT); $i++) { ?>
+                            <tr>
+                                <td><?php echo $listaProcedimientosT[$i]->idTipo ?></td>    
+                                <td><?php echo $listaProcedimientosT[$i]->tituloTipo ?></td>
+                               
+                                
+                               
+                                <?php 
+
+                                 $idTipo=$listaProcedimientosT[$i]->idTipo;
+
+
+                                ?>
+                            <td>
+                               <?php echo Form::open("formula/generarFormulaP"); ?>
+                             <input type="date" id="fechaP" name ="fechaP" required>
+                              <input type ="hidden" id="idTipo" name ="idTipo" value="<?php echo $idTipo?>">
+
+
+        <button class="btn btn-primary" type="submit" name="Buscar" > Generar Fórmula  </button>
+
+
+                                 
+                                  <?php echo Form::close(); ?>
+
+                                  <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("verProcedimientos/$idTipo", ' Ver medicamentos') ?>
+                               
+                            </td>  
+                            </tr>
+                             <?php } ?>
+                        </tbody>
+                    </table>
+                     
+            
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->

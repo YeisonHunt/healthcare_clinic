@@ -1,0 +1,33 @@
+<!doctype html> <!-- Aquí están las imágenes de la institución-->
+<html>
+<head>
+
+</head>
+<body>
+<?php 
+$number = rand(1,16);
+
+if($number==5){
+
+	$number=12;}
+
+	if($number==4){
+
+	$number=13;}
+
+
+?>
+<div class="row">
+  <div class="container">
+    <div id="slides">
+	
+	<img class="img-rounded" src=" <?php echo PUBLIC_PATH ?>img/<?php echo $number ?>.jpg"  style="border:2px solid #70DBDB;  width:1080px;width:94%;"alt="Se el pilar de los nuevos ciudadanos"/><br/>
+	
+ 
+    </div>
+  </div>
+</div>
+
+  <!-- End SlidesJS Required -->
+</body>
+</html>

@@ -1,0 +1,58 @@
+<?php View::content(); ?>
+
+<?php echo Form::open(); ?>
+
+<div class="row">
+
+    <div class="col-lg-3">
+        <div class="form-group">
+        <label for="idProF">Fecha Registro</label>
+            <input type="date" name="fechaF" id="fechaF" class="form-control" required>
+            <input type="hidden" name="idProF" id="idProF" class="form-control" placeholder="Identificación" value ="23">
+        </div>
+        <div class="form-group">
+        <label for="nombreF">Concepto</label>
+            <textarea type="text" name="conceptoF" rows="3"  id="conceptoF" class="form-control" placeholder="Concepto de la entrada o salida" required></textarea>
+        </div>
+        <div class="form-group">
+        <label for="apellidoF">Cantidad </label>
+            <input type="number" name="montoF"  id="montoF" class="form-control" placeholder="$000000" required>
+        </div>
+
+
+        <div class="form-group">
+            <label>Tipo </label>
+            <select class="form-control"  name ="tipo"id="tipo" required >
+             <optgroup label="Entrada ó Salida">
+                <option>Entrada</option>
+                <option>Salida</option>
+                
+                </optgroup>
+              
+            </select>
+
+        </div>
+    </div>
+
+    
+
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-2">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">Agregar Registro
+            <!--?php echo Form::submit("Ingresar","class: boton"); ?-->
+        </button>
+    </div>
+    <div class="col-lg-2">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close(); ?>

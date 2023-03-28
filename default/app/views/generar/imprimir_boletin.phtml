@@ -1,0 +1,159 @@
+<?php
+
+  View::content();
+  
+  Load::lib('pdf/mpdf');
+  $css = file_get_contents('css/sbadmin/bootstrap.css');
+
+  $html = '<div class="row text-center">
+  <div class="col-lg-4">
+    <img src="../public/img/escudopdf.png" />
+  </div>
+  <br />
+  <div class="col-lg-4">
+    REPUBLICA DE COLOMBIA <br />
+    SECRETARÍA DE EDUCACIÓN DEPARTAMENTAL <br />
+    COLEGIO DEPARTAMENTAL INSTITUCIÓN EDUCATIVA BELÉN <br />
+    RESOLUCIÓN No. 9999 DE 2015 DECRETO 999 DE 2004 <br />
+    NIT: XXXX DANE 241359000160 <br />
+    ISNOS - HUILA
+  </div>
+  <div class="col-lg-4">
+    <img src="../public/img/sistemapdf.png" />
+  </div>
+</div>
+
+<br />
+
+<div class="row text-center">
+  <div class="col-lg-12">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th class="text-center">IDENTIFICACIÓN</th>
+            <th class="text-center">NOMBRES</th>
+            <th class="text-center">APELLIDOS</th>
+            <th class="text-center">EDAD</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>'.  $alumno->idAlumno .'</td>
+            <td>'.  $alumno->nombres .'</td>
+            <td>'.  $alumno->apellidos .'</td>
+            <td>'.  $alumno->edad .'</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th class="text-center">CÓDIGO</th>
+            <th class="text-center">ASIGNATURA</th>
+            <th class="text-center">DESEMPEÑO</th>
+            <th class="text-center">VALORACIÓN</th>
+            <th class="text-center">ESCALA NACIONAL</th>
+            <th class="text-center">FALTAS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>01</td>
+            <td>Cálculo 20</td>
+            <td>Debilidad: Desconoce las derivadas</td>
+            <td>0,87</td>
+            <td>B-</td>
+            <td>15</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>02</td>
+            <td>Inglés</td>
+            <td>Fortaleza: Conoce los verbos</td>
+            <td>2,80</td>
+            <td>B-</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>03</td>
+            <td>Sociales</td>
+            <td>Fortaleza: Conoce la ubicación geográfica</td>
+            <td>3,12</td>
+            <td>B+</td>
+            <td>7</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td>04</td>
+            <td>Fisica</td>
+            <td>Fortaleza: Conoce la composición de la materia</td>
+            <td>4,32</td>
+            <td>A</td>
+            <td>3</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th class="text-center">PUESTO</th>
+            <th class="text-center">FALTAS TOTALES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>29 DE 45</td>
+            <td>26</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<!-- /.row -->
+<div class="row text-center">
+  <div class="col-lg-12">
+    <b>ESCALA NACIONAL DE 4,6 - 5,0 SUPERIOR | 3,9 - 4,5 ALTO | 3,0 -3,8 BASICO | 1,0 - 2,9 BAJO</b>
+  </div>
+  <div class="col-lg-12">
+    <b>OBSERVACIONES: ' . $observaciones .' </b>
+  </div>
+</div>
+
+<br /><br /><br /><br />
+
+<!-- /. Firmas -->
+<div class="row text-center">
+  <div class="col-lg-6">
+    
+    ________________________
+
+    <b> <br />'. $nombreRector .'<br />Rector</b>
+  </div>
+  <br />
+  <div class="col-lg-6">
+    ________________________
+
+    <b> <br />'. $nombreDirector .'<br /> Director</b>
+  </div>
+</div>
+
+<br />
+
+';
+
+$mpdf = new mPDF('c', 'A4');
+
+$mpdf->WriteHTML($css, 1);
+$mpdf->WriteHTML($html);
+$mpdf->Output('boletin.pdf', 'I');
+
+?>

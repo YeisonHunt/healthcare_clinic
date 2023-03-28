@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="shorcut icon" type="image/x-icon" href="http://barekedesign.com/sistema-academico/favicon.ico"/>
+
+        <title>CLINIC</title>
+
+        <?php Tag::css('sbadmin/estado-operacion') ?>
+        <!-- Bootstrap Core CSS -->
+        <?php Tag::css('sbadmin/bootstrap') ?>
+
+        <!-- Custom CSS -->
+        <?php Tag::css('sbadmin/sb-admin') ?>
+
+        <!-- Morris Charts CSS -->
+        <?php Tag::css('sbadmin/morris') ?>
+
+        <!-- Custom Fonts -->
+        <?php Tag::css('sbadmin/font-awesome/css/font-awesome.min') ?>
+
+        <?php echo Html::includeCss() ?>
+      
+    </head>
+
+    <body>
+        <div id="wrapper">
+            <?php View::partial('sbadmin/navigation') ?>
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">
+                                <?php echo $titulo; ?> <small> <?php echo $subtitulo; ?> </small>
+                            </h1>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <i class="fa fa-group"></i>  <a href="/Clinic/inicio">Menú Principal</a>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-edit"></i> <?php echo $informacion; ?> 
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                    <?php View::content() ?>
+                    <?php View::partial('sbadmin/footer') ?>
+                </div>
+            </div>
+        </div>
+
+        <!-- jQuery -->
+        <?php echo Tag::js('sbadmin/js/jquery') ?>
+        <!-- Bootstrap Core JavaScript -->
+        <?php echo Tag::js('sbadmin/js/bootstrap') ?>
+
+        <!-- Morris Charts JavaScript -->
+        <?php echo Tag::js('sbadmin/js/plugins/morris/raphael') ?>
+        <?php echo Tag::js('sbadmin/js/plugins/morris/morris.min') ?>
+        <?php echo Tag::js('sbadmin/js/plugins/morris/morris-data') ?>
+    </body>
+</html>

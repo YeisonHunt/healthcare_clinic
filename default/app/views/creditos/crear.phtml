@@ -1,0 +1,60 @@
+<?php View::content(); ?>
+
+<?php echo Form::open(); ?>
+
+<h4><b>Información del crédito a dar </b></h4>
+<hr>
+
+<div class="row">
+
+
+<div class="col-lg-4">
+   <div class="form-group">
+  <label for="comment">Descripción de la deuda</label>
+  <textarea class="form-control" rows="4" id="des" name ="des" placeholder ="Puede contener información de medicamentos dados, cantidades, descripción de los procedimientos dados,etc..." required></textarea>
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="row">
+
+<div class="col-lg-3">
+   <div class="form-group">
+  <label for="comment">Introduzca el monto del crédito ($Pesos)</label>
+  <input class="form-control" type="number" name ="deuda" id="deuda"  placeholder="Sin cómas ni tíldes"required>
+  <input  type="hidden" name ="valAle" id="valAle" value="2">
+</div>
+
+</div>
+
+
+
+
+</div>
+<!-- /.row -->
+
+
+
+<div class="row">
+
+
+  <div class="col-lg-2">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Ingresar">Guardar Crédito
+            
+        </button>
+    </div>
+<?php echo Form::close(); ?>
+
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::linkAction("", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+

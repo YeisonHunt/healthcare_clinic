@@ -1,0 +1,433 @@
+<?php
+
+
+
+$conn = new mysqli('localhost','root','','belen_sistema_academico');
+$conn1 = new mysqli('localhost','root','','belen_sistema_academico');
+$conn2 = new mysqli('localhost','root','','belen_sistema_academico');
+
+$conn3 = new mysqli('localhost','root','','belen_sistema_academico');
+$conn4 = new mysqli('localhost','root','','belen_sistema_academico');
+$conn5 = new mysqli('localhost','root','','belen_sistema_academico');
+
+$conn6 = new mysqli('localhost','root','','belen_sistema_academico');
+$conn7 = new mysqli('localhost','root','','belen_sistema_academico');
+$conn8 = new mysqli('localhost','root','','belen_sistema_academico');
+
+$conn9 = new mysqli('localhost','root','','belen_sistema_academico');
+$conn10 = new mysqli('localhost','root','','belen_sistema_academico');
+$conn11 = new mysqli('localhost','root','','belen_sistema_academico');
+
+$conn12 = new mysqli('localhost','root','','belen_sistema_academico');
+$conn13 = new mysqli('localhost','root','','belen_sistema_academico');
+$conn14 = new mysqli('localhost','root','','belen_sistema_academico');
+
+$conn15 = new mysqli('localhost','root','','belen_sistema_academico');
+$conn16 = new mysqli('localhost','root','','belen_sistema_academico');
+$conn17 = new mysqli('localhost','root','','belen_sistema_academico');
+
+
+// Lista de Sql que necesito para hacer los cálculos de cuantos chicos(as) hay por listar.
+
+
+$query_aprobados="SELECT COUNT(promover) from alumno  where grado =".$grado1."  and genero='Masculino'";
+$query_reprobados="SELECT COUNT(promover) from alumno  where grado=".$grado1." and genero='Femenino'";
+$query_totales="SELECT COUNT(tipo_matricula) from alumno where  grado=".$grado1."  ";
+
+$query_trasladadosH="SELECT COUNT(promover) from alumno where promover like 'Trasladado%' and grado=".$grado1."  and genero='Masculino'";
+$query_trasladadosM="SELECT COUNT(promover) from alumno where promover like 'Trasladado%' and grado=".$grado1." and genero='Femenino'";
+$query_trasladadosT="SELECT COUNT(tipo_matricula) from alumno where promover like 'Trasladado%' and  grado=".$grado1."  ";
+
+$query_ingresadosH="SELECT COUNT(tipo_matricula) from alumno where tipo_matricula like 'Extraordinaria%' and grado=".$grado1."  and genero='Masculino'";
+$query_ingresadosM="SELECT COUNT(tipo_matricula) from alumno where tipo_matricula like 'Extraordinaria%' and grado=".$grado1." and genero='Femenino'";
+$query_ingresadosT="SELECT COUNT(tipo_matricula) from alumno where tipo_matricula like 'Extraordinaria%' and  grado=".$grado1."  ";
+
+$query_aprobadosH="SELECT COUNT(promover) from alumno where promover like 'Aprobado%' and grado=".$grado1."  and genero='Masculino'";
+$query_aprobadosM="SELECT COUNT(promover) from alumno where promover like 'Aprobado%' and grado=".$grado1." and genero='Femenino'";
+$query_aprobadosT="SELECT COUNT(promover) from alumno where promover like 'Aprobado%' and  grado=".$grado1."  ";
+
+$query_reprobadosH="SELECT COUNT(promover) from alumno where promover like 'Reprobado%' and grado=".$grado1."  and genero='Masculino'";
+$query_reprobadosM="SELECT COUNT(promover) from alumno where promover like 'Reprobado%' and grado=".$grado1." and genero='Femenino'";
+$query_reprobadosT="SELECT COUNT(promover) from alumno where promover like 'Reprobado%' and  grado=".$grado1."  ";
+
+$query_desertoresH="SELECT COUNT(promover) from alumno where promover like 'Desertor(a)%' and grado=".$grado1."  and genero='Masculino'";
+$query_desertoresM="SELECT COUNT(promover) from alumno where promover like 'Desertor(a)%' and grado=".$grado1." and genero='Femenino'";
+$query_desertoresT="SELECT COUNT(promover) from alumno where promover like 'Desertor(a)%' and  grado=".$grado1."  ";
+
+$prepare = $conn->prepare($query_aprobados);
+$prepare->execute();
+$prepare1 = $conn1->prepare($query_reprobados);
+$prepare1->execute();
+$prepare2 = $conn2->prepare($query_totales);
+$prepare2->execute();
+
+$prepare3 = $conn3->prepare($query_trasladadosH);
+$prepare3->execute();
+$prepare4 = $conn4->prepare($query_trasladadosM);
+$prepare4->execute();
+$prepare5 = $conn5->prepare($query_trasladadosT);
+$prepare5->execute();
+
+$prepare6 = $conn6->prepare($query_ingresadosH);
+$prepare6->execute();
+$prepare7 = $conn7->prepare($query_ingresadosM);
+$prepare7->execute();
+$prepare8 = $conn8->prepare($query_ingresadosT);
+$prepare8->execute();
+
+$prepare9 = $conn9->prepare($query_aprobadosH);
+$prepare9->execute();
+$prepare10 = $conn10->prepare($query_aprobadosM);
+$prepare10->execute();
+$prepare11 = $conn11->prepare($query_aprobadosT);
+$prepare11->execute();
+
+$prepare12 = $conn12->prepare($query_reprobadosH);
+$prepare12->execute();
+$prepare13 = $conn13->prepare($query_reprobadosM);
+$prepare13->execute();
+$prepare14 = $conn14->prepare($query_reprobadosT);
+$prepare14->execute();
+
+$prepare15 = $conn15->prepare($query_desertoresH);
+$prepare15->execute();
+$prepare16 = $conn16->prepare($query_desertoresM);
+$prepare16->execute();
+$prepare17 = $conn17->prepare($query_desertoresT);
+$prepare17->execute();
+
+
+
+//Ahora guardaremos ese resultado en:
+$resultSet= $prepare->get_result();
+$resultSet1= $prepare1->get_result();
+$resultSet2= $prepare2->get_result();
+$resultSet3= $prepare3->get_result();
+$resultSet4= $prepare4->get_result();
+$resultSet5= $prepare5->get_result();
+$resultSet6= $prepare6->get_result();
+$resultSet7= $prepare7->get_result();
+$resultSet8= $prepare8->get_result();
+
+$resultSet9= $prepare9->get_result();
+$resultSet10= $prepare10->get_result();
+$resultSet11= $prepare11->get_result();
+
+$resultSet12= $prepare12->get_result();
+$resultSet13= $prepare13->get_result();
+$resultSet14= $prepare14->get_result();
+
+$resultSet15= $prepare15->get_result();
+$resultSet16= $prepare16->get_result();
+$resultSet17= $prepare17->get_result();
+
+//Ahora vamos a trabajar con cada una de las filas del Set de Resultados
+while($alumno_estado[]= $resultSet->fetch_array());
+while($alumno_estado1[]= $resultSet1->fetch_array());
+while($alumno_estado2[]= $resultSet2->fetch_array());
+while($alumno_estado3[]= $resultSet3->fetch_array());
+while($alumno_estado4[]= $resultSet4->fetch_array());
+while($alumno_estado5[]= $resultSet5->fetch_array());
+while($alumno_estado6[]= $resultSet6->fetch_array());
+while($alumno_estado7[]= $resultSet7->fetch_array());
+while($alumno_estado8[]= $resultSet8->fetch_array());
+
+while($alumno_estado9[]= $resultSet9->fetch_array());
+while($alumno_estado10[]= $resultSet10->fetch_array());
+while($alumno_estado11[]= $resultSet11->fetch_array());
+
+while($alumno_estado12[]= $resultSet12->fetch_array());
+while($alumno_estado13[]= $resultSet13->fetch_array());
+while($alumno_estado14[]= $resultSet14->fetch_array());
+
+while($alumno_estado15[]= $resultSet15->fetch_array());
+while($alumno_estado16[]= $resultSet16->fetch_array());
+while($alumno_estado17[]= $resultSet17->fetch_array());
+
+
+$resultSet->close();
+$prepare->close();
+$conn->close();
+
+$resultSet1->close();
+$prepare1->close();
+$conn1->close();
+
+$resultSet2->close();
+$prepare2->close();
+$conn2->close();
+
+
+$resultSet3->close();
+$prepare3->close();
+$conn3->close();
+
+$resultSet4->close();
+$prepare4->close();
+$conn4->close();
+
+$resultSet5->close();
+$prepare5->close();
+$conn5->close();
+
+$resultSet6->close();
+$prepare6->close();
+$conn6->close();
+
+$resultSet7->close();
+$prepare7->close();
+$conn7->close();
+
+$resultSet8->close();
+$prepare8->close();
+$conn8->close();
+
+$resultSet9->close();
+$prepare9->close();
+$conn9->close();
+
+$resultSet10->close();
+$prepare10->close();
+$conn10->close();
+
+$resultSet11->close();
+$prepare11->close();
+$conn11->close();
+
+$resultSet12->close();
+$prepare12->close();
+$conn12->close();
+
+$resultSet13->close();
+$prepare13->close();
+$conn13->close();
+
+$resultSet14->close();
+$prepare14->close();
+$conn14->close();
+
+$resultSet15->close();
+$prepare15->close();
+$conn15->close();
+
+$resultSet16->close();
+$prepare16->close();
+$conn16->close();
+
+$resultSet17->close();
+$prepare17->close();
+$conn17->close();
+
+date_default_timezone_set("America/Bogota");
+$fecha= date("d-m-Y");
+
+
+    View::content();
+    Load::lib('pdf/mpdf');
+   
+
+ $css = file_get_contents('css/boot/bootstrap.css');
+ 
+ $anio="2017";
+  
+    $html = '
+	
+	<div style ="text-align: center;">
+    <h4 >---Reporte de Matricula por grados---</h4>
+    <h4>Institución Educativa Belén - Sede Principal </h4>
+    <hr>
+</div>
+	<div  style="overflow-x:auto;">
+	<table class="table table-striped">
+
+    <thead >
+    
+        <tr>
+          <th><h3>Reporte de Matricula: Grado ('.$grado1.') </h3> </th> 
+            <th><h3>Hombres</h3></th>
+            <th><h3>Mujeres</h3></th>
+            <th><h3>Total</h3></th>
+        </tr>
+        <thead>
+        <tbody >
+   
+        <tr>
+          <th><h4>Matricula Inicial</h4></th>
+
+		  ';
+
+foreach($alumno_estado as $var){
+
+	$html.=' <th><h4>'.$var[0].'</h4></th>';break;
+}
+
+foreach($alumno_estado1 as $var1){
+
+	$html.=' <th><h4>'.$var1[0].'</h4></th>';break;
+}
+
+foreach($alumno_estado2 as $var2){
+
+	$html.=' <th><h4>' .$var2[0].'</th>';break;
+}
+
+
+
+
+$html.='
+
+            
+        </tr>
+        <tr>
+          <td><h4>Trasladados</hd></th>
+		  
+
+		  ';
+
+foreach($alumno_estado3 as $var3){
+
+	$html.=' <th><h4>'.$var3[0].'</h4></th>';break;
+}
+
+foreach($alumno_estado4 as $var4){
+
+	$html.=' <th><h4>'.$var4[0].'</th></h4>';break;
+}
+
+foreach($alumno_estado5 as $var5){
+
+	$html.=' <th><h4>' .$var5[0].'</th></h4>';break;
+}
+
+
+
+
+$html.='
+
+
+        </tr>
+      <tr>
+          <td><h4>Ingresados (Matricula Extraordinaria)</h4></td>
+             ';
+
+foreach($alumno_estado6 as $var6){
+
+	$html.=' <th><h4>'.$var6[0].'</h4></th>';break;
+}
+
+foreach($alumno_estado7 as $var7){
+
+	$html.=' <th><h4>'.$var7[0].'</h4></th>';break;
+}
+
+foreach($alumno_estado8 as $var8){
+
+	$html.=' <th><h4>' .$var8[0].'</h4></th>';break;
+}
+
+
+
+
+$html.='
+
+        </tr>
+		   <tr>
+          <td><h4>Aprobados</h4></td>
+              ';
+
+foreach($alumno_estado9 as $var9){
+
+	$html.=' <th><h4>'.$var9[0].'</h4></th>';break;
+}
+
+foreach($alumno_estado10 as $var10){
+
+	$html.=' <th><h4>'.$var10[0].'</h4></th>';break;
+}
+
+foreach($alumno_estado11 as $var11){
+
+	$html.=' <th><h4>' .$var11[0].'</h4></th>';break;
+}
+
+
+
+
+$html.='
+
+
+        </tr>
+		<tr>
+		 <td><h4>Reprobados</h4></td>
+                ';
+
+foreach($alumno_estado12 as $var12){
+
+	$html.=' <th><h4>'.$var12[0].'</h4></th>';break;
+}
+
+foreach($alumno_estado13 as $var13){
+
+	$html.=' <th><h4>'.$var13[0].'</h4></th>';break;
+}
+
+foreach($alumno_estado14 as $var14){
+
+	$html.=' <th><h4>' .$var14[0].'</h4></th>';break;
+}
+
+
+
+
+$html.='
+        </tr>
+		<tr>
+		 <td><h4>Desertores</h4></td>
+            
+      ';
+
+foreach($alumno_estado15 as $var15){
+
+	$html.=' <th><h4>'.$var15[0].'</h4></th>';break;
+}
+
+foreach($alumno_estado16 as $var16){
+
+	$html.=' <th><h4>'.$var16[0].'</h4></th>';break;
+}
+
+foreach($alumno_estado17 as $var17){
+
+	$html.=' <th><h4>' .$var17[0].'</h4></th>';break;
+}
+
+
+$tempFinalH = intval($var[0]) - intval($var3[0]) + intval($var6[0]) - intval($var15[0]) ; // Hombres
+$tempFinalM = intval($var1[0]) - intval($var4[0]) + intval($var7[0]) - intval($var16[0]) ; // Mujeres 	
+$tempFinalT = intval($var2[0]) - intval($var5[0]) + intval($var8[0]) - intval($var17[0]) ; // Todos
+
+$html.='
+
+        </tr>
+		<tr>
+		 <th><h4>Matricula Final</h4></th>
+            <th><h3>' .$tempFinalH.'</h3></th>
+            <th><h3>' .$tempFinalM.'</h3></th>
+            <th><h3>' .$tempFinalT.'</h3></th>
+        </tr>
+    </tbody>
+</table>
+</div>
+</h3>
+<h4><em>Reporte generado para la fecha (dd/mm/aaaa): '.$fecha.'</em></h4>
+<hr>
+
+';
+
+    $mpdf = new mPDF('c', 'A4-L');
+
+    $mpdf->WriteHTML($css, 1);
+
+    $mpdf->WriteHTML($html);
+    $mpdf->Output('reporte_matricula_grado'.$grado1.'.pdf', 'I');
+?>

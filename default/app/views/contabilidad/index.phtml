@@ -1,0 +1,216 @@
+
+<?php Tag::css('materialize/css/estilos') ?>
+
+<?php echo Html::includeCss() ?>
+
+<?php View::content(); 
+date_default_timezone_set("America/Bogota");
+
+ ?>
+
+
+
+<div class="row">
+
+    <div class="col-lg-3" style="margin-left:20px; margin-top:35px;">
+        <div class="actions">
+            <?= Html::linkAction("create/", 'Crear Nuevo Registro', 'class="btn btn-primary"') ?>
+        </div>
+    </div>
+
+
+
+  
+
+    <div class="col-lg-3" style ="margin-left:20px;">
+        <div class="form-group input-group">
+            <span class="input-group-btn">
+                <?php echo Form::open("contabilidad/buscar/"); ?>
+                <h4>Buscar por fecha </h4>
+                <input type="hidden" name="valI" id ="valI" value="2">
+                <input type="date" name="cedulaP" id ="cedulaP" class="form-control" placeholder="Introducir Cédula" required>
+                <button class="btn btn-default" type="submit" name="Buscar"><i class="fa fa-search"></i></button>
+                <?php echo Form::close(); ?>
+            </span>
+        </div>
+    </div>
+
+
+</div>
+
+<hr>
+
+<h4>Calcular Saldos por semana, mes,año...</h4>
+
+<div class="row"> 
+
+     <div class="col-lg-3" style ="margin-left:30px;">
+        <div class="form-group input-group">
+            <span class="input-group-btn">
+                <?php echo Form::open("contabilidad/sumar/"); ?>
+                <h4>Fecha Inicial </h4>
+                <input type="hidden" name="valI" id ="valI" value="2">
+                <input type="date" name="fechaInicial" id ="fechaInicial" class="form-control"  required>      
+            </span>
+        </div>
+    </div><!-- end column 1-->
+
+     <div class="col-lg-3" style ="margin-left:30px;">
+        <div class="form-group input-group">
+            <span class="input-group-btn">
+                
+                <h4>Fecha Final </h4>
+                
+                <input type="date" name="fechaFinal" id ="fechaFinal" class="form-control" required>
+               
+                
+            </span>
+        </div>
+    </div><!-- end column 2-->
+
+    <div class="col-lg-2" style="margin-top:38px;">
+
+         <button class="btn btn-danger" type="submit" name="Buscar"><i class="fa fa-line-chart"></i>Generar</button>
+    </div>
+
+        <?php echo Form::close(); ?>
+
+ </div><!-- end row-->
+
+<hr>
+
+<h4>Listando los últimos registros contables...</h4>
+<hr>
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>#</th>
+                        <th>Fecha (Año-Mes-Día)</th>
+                        <th>Concepto</th>
+                        <th>Valor ($)</th>
+                        <th>Tipo</th>
+                        <th>Acciones</th>
+                       
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for($i=0; $i<count($listaCreditos); $i++) {
+                        
+                        if($listaCreditos[$i]->tipoIngEgre=='Entrada'){
+                            $class="success";
+                        }else{
+
+                            $class="warning";
+                        }
+                         ?>
+                    <tr>
+                     <td class="<?php echo $class; ?>"><?php echo $listaCreditos[$i]->id ?></td>
+                     <td class="<?php echo $class; ?>"><b><?php echo $listaCreditos[$i]->fecha ?><b></td>
+                     <td class="<?php echo $class; ?>"><?php echo $listaCreditos[$i]->concepto ?></td>
+                     <td class="<?php echo $class; ?>"><?php echo number_format( $listaCreditos[$i]->monto) ?></td>
+                     <td class="<?php echo $class; ?>"><?php echo $listaCreditos[$i]->tipoIngEgre ?></td>
+                    
+                     <?php 
+
+                         $id = $listaCreditos[$i]->id;
+                      ?>
+
+                    </td> 
+ 
+                    <td> 
+                      
+                     <i class="fa fa-fw fa-check"></i>
+
+                <?php echo Html::linkAction("verMasPorFecha/$id", 'Ver demás registros para esta fecha'); ?>
+                <?php echo "<br>" ?>
+
+     
+                     <i class="fa fa-fw fa-edit"></i><?php   echo Html::linkAction("edit/$id", 'Editar este registro');
+
+            ?>
+
+                   
+
+
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>
+<!-- /.row -->
+<hr>
+
+<h4>Saldos...
+</h4>
+<div class="row">
+
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>#</th>
+                        <th>Fecha (Año-Mes-Día)</th>
+                        <th>Valor ($)</th>
+                        <th>Ver Registros asociados</th>
+                        
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php for($i=0; $i<count($listaSaldos); $i++) {
+                        
+                        if($listaSaldos[$i]->monto>0){
+                            $class="success";
+                        }else{
+
+                            $class="warning";
+                        }
+                        if($i==0){$to = "  (Hoy)";}
+                        else{$to = "";}
+                        
+
+
+                         ?>
+                    <tr>
+                     <td class="<?php echo $class; ?>"><?php echo $listaSaldos[$i]->id ?></td>
+                     <td class="<?php echo $class; ?>"><b><?php echo $listaSaldos[$i]->fecha. $to?><b></td>
+                  <td class="<?php echo $class; ?>"><?php echo number_format( $listaSaldos[$i]->monto) ?></td>
+                     
+                    
+                     <?php 
+
+                         $id = $listaSaldos[$i]->id;
+                      ?>
+
+                    </td> 
+ 
+                    <td> 
+                      
+                    
+
+     
+                     <i class="fa fa-fw fa-edit"></i><?php   echo Html::linkAction("verMasPorFecha2/$id", 'Ver Registros Asociados');
+
+                            ?>
+
+                    </td>
+
+                   
+
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>

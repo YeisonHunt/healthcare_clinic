@@ -1,0 +1,56 @@
+<?php View::content(); ?>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="actions">
+            <?= Html::linkAction("", 'Crear nueva materia', 'class="btn btn-primary"') ?>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="form-group input-group">
+            <input type="text" class="form-control">
+            <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-2">
+        <?php if ($listaMaterias->prev) echo Html::linkAction("index/$listaNotas->prev/", '<< Anterior'); ?>
+    </div>
+    <div class="col-lg-2">
+        <?php if ($listaMaterias->next) echo Html::linkAction("index/$listaNotas->next/", 'Próximo >>'); ?>
+    </div>
+</div>
+
+
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <br />
+                <thead>
+                    <tr>
+                        <th>Asignatura</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php $tam = count($arrayMaterias); ?>
+                   <?php for($i=0; $i<$tam; $i++) { ?>
+                        <tr>
+                            <td><?php echo $arrayMaterias[$i]->nombre; ?></td>    
+                            <td>
+                            <?php $auxId = $arrayMaterias[$i]->idMateria; ?>
+                                <i class="fa fa-fw fa-edit"></i><?php echo Html::linkAction("verAlumnos/".$auxId."/", 'Ver Alumnos') ?>
+                            </td>  
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- /.row -->

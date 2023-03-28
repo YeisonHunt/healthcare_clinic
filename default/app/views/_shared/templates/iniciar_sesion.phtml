@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lan="es">
+    <head>
+        <title>Inicio de Sesión - Academic</title>
+        <meta charset=<?= APP_CHARSET ?> >
+        <link rel="shorcut icon" type="image/x-icon" href="http://barekedesign.com/sistema-academico/favicon.ico"/>
+        
+        <?php Tag::css('sbadmin/estado-operacion') ?>
+        
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!--Import materialize.css-->
+        <?php Tag::css('materialize/css/materialize.min') ?>
+        <?php Tag::css('materialize/css/estilos') ?>
+
+        <?php echo Html::includeCss() ?>
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body class="#263238 blue-grey darken-4">
+        <?php View::content() ?>
+        
+        <!--Import jQuery before materialize.js-->
+        <?php echo Tag::js('materialize/js/jquery.min') ?>
+        <?php echo Tag::js('materialize/js/materialize.min') ?>
+    </body>
+</html>
+
+

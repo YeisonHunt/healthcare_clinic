@@ -1,0 +1,55 @@
+<?php View::content(); ?>
+
+<?php echo Form::open(); // por defecto llama a la misma url ?>
+
+<div class="row">
+
+<div class="col-lg-3">
+
+<div class="form-group">
+  <label for="oldTeacher">Profesor Actual de la Materia:</label>
+  <input type="text" class="form-control" id="usr" value ="<?php echo $nombreP; ?> &nbsp; <?php  echo $apellidoP;?>" disabled> 
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+    <div class="form-group">
+            <label>Profesores Siguiente: Esocoger uno</label>
+            <select class="form-control" name ="idPro" id="idPro">
+             <optgroup label="Seleccione el nuevo profesor">
+              <?php foreach ($profesor->items as $item) : ?>
+                <option value='<?php echo $item->idPro ?>'> <?php echo $item->nombrePro ?> &nbsp; <?php echo $item->apellidoPro ?> </option>
+              <?php endforeach; ?>
+              </optgroup>
+            </select>
+        </div>  
+
+         <div class="form-group" style="display:none;">
+            <input type="text" name="idMateria" id="idMateria"  value ="<?php echo $idMat; ?>" class="form-control" placeholder="Grado">
+             </div>
+</div>
+
+
+
+</div>
+<!-- /.row -->
+
+<div class="row">
+
+    <div class="col-lg-2">
+        <button class="btn btn-success waves-effect waves-light" type="submit" name="Actualizar">Actualizar Profesor
+            <!--?php echo Form::submit('Actualizar') ?-->
+        </button>
+    </div>
+    <div class="col-lg-1">
+        <div class="actions">
+            <?= Html::link("materia/listar", 'Volver', 'class="btn btn-danger"') ?>
+        </div>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<?php echo Form::close() ?>
